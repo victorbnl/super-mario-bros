@@ -34,6 +34,5 @@ void Character::move(int direction)
 
 void Character::update(SDL_Renderer* renderer)
 {
-    // Move character according to velocity
     mTexture.render(renderer, round(mX), round(mY));
 }
