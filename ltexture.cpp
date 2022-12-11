@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include <SDL2/SDL_image.h>
 
 #include "ltexture.h"
@@ -17,20 +18,25 @@ LTexture::~LTexture()
 
 void LTexture::free()
 {
-    SDL_DestroyTexture(mTexture);
-    mTexture = NULL;
-    mWidth = 0;
-    mHeight = 0;
+    if (mTexture != NULL)
+    {
+        SDL_DestroyTexture(mTexture);
+        mTexture = NULL;
+        mWidth = 0;
+        mHeight = 0;
+    }
 }
 
 bool LTexture::loadFromFile(SDL_Renderer* renderer, std::string path)
 {
+    bool success = true;
+
     // Load image into a surface
     SDL_Surface* surface = IMG_Load(path.c_str());
     if (surface == NULL)
     {
         std::cout << "Failed to load surface: " << path << std::endl;
-        return false;
+        success = false;
     }
 
     // Get image dimensions
@@ -38,19 +44,17 @@ bool LTexture::loadFromFile(SDL_Renderer* renderer, std::string path)
     mHeight = surface->h;
 
     // Create a texture from the surface
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-    if (texture == NULL)
+    mTexture = SDL_CreateTextureFromSurface(renderer, surface);
+    if (mTexture == NULL)
     {
         std::cout << "Failed to create texture from surface: " << path << std::endl;
-        return false;
+        success = false;
     }
 
     // Free old surface
     SDL_FreeSurface(surface);
 
-    mTexture = texture;
-
-    return true;
+    return success;
 }
 
 void LTexture::render(SDL_Renderer* renderer, int x, int y)

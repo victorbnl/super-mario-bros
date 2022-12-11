@@ -13,11 +13,11 @@ class Character
         // Constructor
         Character();
 
-        // Destructor
-        ~Character();
-
         // Load texture
         bool loadTextureFromFile(SDL_Renderer* renderer, std::string path);
+
+        // Free texture
+        void freeTexture();
 
         // Move character horizontally
         void move(int direction);

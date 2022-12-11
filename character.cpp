@@ -11,20 +11,22 @@ Character::Character()
     mY = 400;
 }
 
-Character::~Character()
-{
-    mTexture.free();
-}
-
 bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)
 {
+    bool success = true;
+
     if (!mTexture.loadFromFile(renderer, path))
     {
         std::cout << "Failed to load character texture: " << path << std::endl;
-        return false;
+        success = false;
     }
 
-    return true;
+    return success;
+}
+
+void Character::freeTexture()
+{
+    mTexture.free();
 }
 
 void Character::move(int direction)
