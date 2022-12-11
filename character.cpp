@@ -3,7 +3,7 @@
 
 #include "character.h"
 
-const float SPEED = 0.4;
+const float SPEED = 0.5;
 
 Character::Character()
 {
