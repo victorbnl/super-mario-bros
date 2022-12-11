@@ -36,5 +36,5 @@ void Character::move(int direction)
 
 void Character::update(SDL_Renderer* renderer)
 {
-    mTexture.render(renderer, round(mX), round(mY));
+    mTexture.render(renderer, mX, mY);
 }
