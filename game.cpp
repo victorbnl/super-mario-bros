@@ -1,8 +1,10 @@
 #include <iostream>
+#include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
 #include "game.h"
+#include "tiles.h"
 
 const int SCREEN_HEIGHT = 48*10;
 const int SCREEN_WIDTH = 48*15;
@@ -57,6 +59,9 @@ Game::Game()
     {
         std::cout << "Failed to load character texture" << std::endl;
     }
+
+    // Load tiles
+    mTiles = getTiles(mRenderer);
 }
 
 Game::~Game()
@@ -116,6 +121,12 @@ void Game::main()
         SDL_Rect skyRect;
         skyRect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
         SDL_RenderFillRect(mRenderer, &skyRect);
+
+        // Draw tiles
+        for (int i = 0; i < size(mTiles); i++)
+        {
+            mTiles[i]->render(mRenderer);
+        }
 
         // Update character
         mCharacter.update(mRenderer);

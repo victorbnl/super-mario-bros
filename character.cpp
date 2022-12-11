@@ -8,7 +8,7 @@ const float SPEED = 5;
 Character::Character()
 {
     mPosX = 70;
-    mPosY = 300;
+    mPosY = 200;
 }
 
 bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)

@@ -19,10 +19,8 @@ class Character
         // Free texture
         void freeTexture();
 
-        // Move character horizontally
+        // Move character
         void moveX(int direction);
-
-        // Move character vertically
         void moveY(int direction);
 
         // Render character
