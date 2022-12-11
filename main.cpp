@@ -3,6 +3,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "ltexture.h"
+#include "character.h"
 
 const int SCREEN_WIDTH = 500;
 const int SCREEN_HEIGHT = 500;
@@ -11,7 +12,7 @@ SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 
 LTexture gSkyTexture;
-LTexture gCharacterTexture;
+Character gCharacter;
 
 bool init()
 {
@@ -63,7 +64,7 @@ bool init()
     }
 
     // Load character texture
-    if (!gCharacterTexture.loadFromFile(gRenderer, "assets/character.png"))
+    if (!gCharacter.loadTextureFromFile(gRenderer, "assets/character.png"))
     {
         std::cout << "Failed to load character texture" << std::endl;
         return false;
@@ -81,12 +82,6 @@ int main(int argc, char* args[])
         return 1;
     }
 
-    // Draw sky
-    gSkyTexture.render(gRenderer, 0, 0);
-
-    // Draw character
-    gCharacterTexture.render(gRenderer, 70, SCREEN_HEIGHT-(100+gCharacterTexture.getHeight()));
-
     // Update
     SDL_RenderPresent(gRenderer);
 
@@ -95,13 +90,37 @@ int main(int argc, char* args[])
     bool quit = false;
     while (quit == false)
     {
+        // Get keypresses
+        const Uint8* keystates = SDL_GetKeyboardState(NULL);
+
+        // Keypresses handlers
+        if (keystates[SDL_SCANCODE_LEFT])
+        {
+            gCharacter.move(-1);
+        }
+        if (keystates[SDL_SCANCODE_RIGHT])
+        {
+            gCharacter.move(+1);
+        }
+
+        // Event handlers
         while (SDL_PollEvent( &e ))
         {
+            // Quit game
             if (e.type == SDL_QUIT)
             {
                 quit = true;
             }
         }
+
+        // Draw sky
+        gSkyTexture.render(gRenderer, 0, 0);
+
+        // Update character
+        gCharacter.update(gRenderer);
+
+        // Update renderer
+        SDL_RenderPresent(gRenderer);
     }
 
     return 0;

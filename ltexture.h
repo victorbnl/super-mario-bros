@@ -1,3 +1,6 @@
+#ifndef LTEXTURE_INCLUDE_GUARD
+#define LTEXTURE_INCLUDE_GUARD
+
 #include <string>
 #include <SDL2/SDL.h>
 
@@ -30,3 +33,5 @@ class LTexture
         int mWidth;
         int mHeight;
 };
+
+#endif
