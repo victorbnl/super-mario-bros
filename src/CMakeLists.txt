@@ -1,2 +1,2 @@
-set(SOURCES main.cpp game.cpp ltexture.cpp character.cpp tiles.cpp)
-add_executable(smb ${SOURCES})
+set(SOURCES game.cpp ltexture.cpp character.cpp tiles.cpp)
+add_library(smb_lib ${SOURCES})
