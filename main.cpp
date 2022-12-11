@@ -13,7 +13,7 @@ bool init()
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
         std::cout << "Failed to initialise SDL" << std::endl;
-        return 1;
+        return false;
     }
 
     // Create a window
