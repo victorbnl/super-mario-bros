@@ -1,7 +1,7 @@
 project(SuperMarioBros)
 
-set(SOURCES main.cpp)
+set(SOURCES main.cpp ltexture.cpp)
 add_executable(smb ${SOURCES})
 
-set(LIBARIES SDL2)
+set(LIBARIES SDL2 SDL2_image)
 target_link_libraries(smb ${LIBARIES})

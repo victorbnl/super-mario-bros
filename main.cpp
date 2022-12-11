@@ -1,5 +1,8 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
+#include "ltexture.h"
 
 const int SCREEN_WIDTH = 500;
 const int SCREEN_HEIGHT = 500;
@@ -7,10 +10,21 @@ const int SCREEN_HEIGHT = 500;
 SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 
+LTexture gSkyTexture;
+LTexture gCharacterTexture;
+
 bool init()
 {
     // Initialise SDL
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+    {
+        std::cout << "Failed to initialise SDL" << std::endl;
+        return false;
+    }
+
+    // Initialise PNG image loader
+    int imgFlags = IMG_INIT_PNG;
+    if (!(IMG_Init(imgFlags) & imgFlags))
     {
         std::cout << "Failed to initialise SDL" << std::endl;
         return false;
@@ -41,6 +55,20 @@ bool init()
         return false;
     }
 
+    // Load sky texture
+    if (!gSkyTexture.loadFromFile(gRenderer, "assets/sky.png"))
+    {
+        std::cout << "Failed to load sky texture" << std::endl;
+        return false;
+    }
+
+    // Load character texture
+    if (!gCharacterTexture.loadFromFile(gRenderer, "assets/character.png"))
+    {
+        std::cout << "Failed to load character texture" << std::endl;
+        return false;
+    }
+
     return true;
 }
 
@@ -53,11 +81,11 @@ int main(int argc, char* args[])
         return 1;
     }
 
-    // Draw black rect
-    SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xFF);
-    SDL_Rect rect;
-    rect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
-    SDL_RenderFillRect(gRenderer, &rect);
+    // Draw sky
+    gSkyTexture.render(gRenderer, 0, 0);
+
+    // Draw character
+    gCharacterTexture.render(gRenderer, 70, SCREEN_HEIGHT-(100+gCharacterTexture.getHeight()));
 
     // Update
     SDL_RenderPresent(gRenderer);
