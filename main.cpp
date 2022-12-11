@@ -91,7 +91,18 @@ int main(int argc, char* args[])
     SDL_RenderPresent(gRenderer);
 
     // Main loop
-    SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
+    SDL_Event e;
+    bool quit = false;
+    while (quit == false)
+    {
+        while (SDL_PollEvent( &e ))
+        {
+            if (e.type == SDL_QUIT)
+            {
+                quit = true;
+            }
+        }
+    }
 
     return 0;
 }
