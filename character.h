@@ -31,8 +31,7 @@ class Character
         LTexture mTexture;
 
         // Character position
-        float mX;
-        float mY;
+        float mPosX, mPosY;
 };
 
 #endif

@@ -3,12 +3,12 @@
 
 #include "character.h"
 
-const float SPEED = 0.5;
+const float SPEED = 5;
 
 Character::Character()
 {
-    mX = 70;
-    mY = 400;
+    mPosX = 70;
+    mPosY = 400;
 }
 
 bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)
@@ -31,10 +31,10 @@ void Character::freeTexture()
 
 void Character::move(int direction)
 {
-    mX += SPEED * direction;
+    mPosX += SPEED * direction;
 }
 
 void Character::update(SDL_Renderer* renderer)
 {
-    mTexture.render(renderer, mX, mY);
+    mTexture.render(renderer, mPosX, mPosY);
 }
