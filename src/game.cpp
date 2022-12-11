@@ -5,6 +5,7 @@
 
 #include "game.h"
 #include "tiles.h"
+#include "collisions.h"
 
 const int SCREEN_HEIGHT = 48*10;
 const int SCREEN_WIDTH = 48*15;
@@ -112,6 +113,9 @@ void Game::main()
         {
             mCharacter.moveX(SPEED);
         }
+
+        // Collisions
+        solveCollisions(&mCharacter, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // Clear screen
         SDL_RenderClear(mRenderer);

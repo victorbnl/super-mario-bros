@@ -23,6 +23,9 @@ class Character
         void moveX(int direction);
         void moveY(int direction);
 
+        // Get collider
+        SDL_Rect getCollider();
+
         // Render character
         void update(SDL_Renderer* renderer);
 
@@ -30,6 +33,9 @@ class Character
 
         // Texture
         LTexture mTexture;
+
+        // Collider
+        SDL_Rect mCollider;
 
         // Character position
         float mPosX, mPosY;
