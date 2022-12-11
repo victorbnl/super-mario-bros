@@ -20,7 +20,10 @@ class Character
         void freeTexture();
 
         // Move character horizontally
-        void move(int direction);
+        void moveX(int direction);
+
+        // Move character vertically
+        void moveY(int direction);
 
         // Render character
         void update(SDL_Renderer* renderer);

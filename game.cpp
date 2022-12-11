@@ -4,8 +4,9 @@
 
 #include "game.h"
 
-const int SCREEN_HEIGHT = 500;
-const int SCREEN_WIDTH = 500;
+const int SCREEN_HEIGHT = 48*10;
+const int SCREEN_WIDTH = 48*15;
+const int SPEED = 5;
 
 Game::Game()
 {
@@ -100,15 +101,21 @@ void Game::main()
         // Keypresses handlers
         if (keystates[SDL_SCANCODE_LEFT])
         {
-            mCharacter.move(-1);
+            mCharacter.moveX(-SPEED);
         }
         if (keystates[SDL_SCANCODE_RIGHT])
         {
-            mCharacter.move(+1);
+            mCharacter.moveX(SPEED);
         }
 
+        // Clear screen
+        SDL_RenderClear(mRenderer);
+
         // Draw sky
-        mSkyTexture.render(mRenderer, 0, 0);
+        SDL_SetRenderDrawColor(mRenderer, 0, 169, 255, SDL_ALPHA_OPAQUE);
+        SDL_Rect skyRect;
+        skyRect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+        SDL_RenderFillRect(mRenderer, &skyRect);
 
         // Update character
         mCharacter.update(mRenderer);

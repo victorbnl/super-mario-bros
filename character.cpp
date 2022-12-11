@@ -8,7 +8,7 @@ const float SPEED = 5;
 Character::Character()
 {
     mPosX = 70;
-    mPosY = 400;
+    mPosY = 300;
 }
 
 bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)
@@ -29,9 +29,14 @@ void Character::freeTexture()
     mTexture.free();
 }
 
-void Character::move(int direction)
+void Character::moveX(int distance)
 {
-    mPosX += SPEED * direction;
+    mPosX += distance;
+}
+
+void Character::moveY(int distance)
+{
+    mPosY += distance;
 }
 
 void Character::update(SDL_Renderer* renderer)
