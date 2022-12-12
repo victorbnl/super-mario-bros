@@ -31,14 +31,12 @@ void Level::load(SDL_Renderer* renderer, std::string path)
             if (tileType > -1)
             {
                 // Add it to the list
-                x = j*TILE_WIDTH;
-                y = SCREEN_HEIGHT-(size(levelData)*48)+i*TILE_HEIGHT;
                 LTexture* texture = (tileSet+levelData[i][j]);
-                line.push_back(new Tile(x, y, texture));
+                line.push_back(new Tile(texture));
             }
             else
             {
-                line.push_back(NULL);
+                line.push_back(new Tile(NULL));
             }
         }
         mTiles.push_back(line);
@@ -53,11 +51,16 @@ Tile* getTileAt(int x, int y)
 
 void Level::render(SDL_Renderer* renderer)
 {
-    for (std::vector<Tile*> line : mTiles)
+    // For line of tiles
+    for (int i = 0; i < size(mTiles); i++)
     {
-        for (Tile* tile : line)
+        // For tile of line
+        for (int j = 0; j < size(mTiles[i]); j++)
         {
-            tile->render(renderer);
+            // Render tile
+            int x = j*TILE_WIDTH;
+            int y = SCREEN_HEIGHT-((size(mTiles))*48)+i*TILE_HEIGHT;
+            mTiles[i][j]->render(renderer, x, y);
         }
     }
 }

@@ -11,18 +11,15 @@ class Tile
     public:
 
         // Constructor
-        Tile(int x, int y, LTexture* texture);
+        Tile(LTexture* texture);
 
         // Render
-        void render(SDL_Renderer* renderer);
+        void render(SDL_Renderer* renderer, int x, int y);
 
     private:
 
         // Texture
         LTexture* mTexture;
-
-        // Position
-        int mPosX, mPosY;
 };
 
 // Get texture set

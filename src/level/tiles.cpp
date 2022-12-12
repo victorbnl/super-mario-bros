@@ -6,16 +6,15 @@
 #include "tiles.h"
 #include "../ltexture.h"
 
-Tile::Tile(int x, int y, LTexture* texture)
+Tile::Tile(LTexture* texture)
 {
-    mPosX = x;
-    mPosY = y;
     mTexture = texture;
 }
 
-void Tile::render(SDL_Renderer* renderer)
+void Tile::render(SDL_Renderer* renderer, int x, int y)
 {
-    mTexture->render(renderer, mPosX, mPosY);
+    if (mTexture != NULL)
+        mTexture->render(renderer, x, y);
 }
 
 LTexture* getTileSet(SDL_Renderer* renderer)
