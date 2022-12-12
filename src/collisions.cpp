@@ -4,7 +4,7 @@
 #include "character.h"
 #include "level/level.h"
 
-void solveCollisions(Character* character, Level level, int winWidth, int winHeight)
+void solveCollisions(Character* character, Level* level, int winWidth, int winHeight)
 {
     // Check collisions with screen borders
     SDL_Rect charCollider = character->getCollider();

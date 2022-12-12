@@ -4,7 +4,8 @@
 #include <vector>
 #include <SDL2/SDL.h>
 
-#include "tiles.h"
+#include "tile.h"
+#include "tileset.h"
 
 class Level
 {
@@ -20,6 +21,9 @@ class Level
         void render(SDL_Renderer* renderer);
 
     private:
+
+        // Tileset
+        Tileset mTileset;
 
         // Level tiles
         std::vector<std::vector<Tile*>> mTiles;

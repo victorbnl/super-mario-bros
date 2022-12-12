@@ -108,7 +108,7 @@ void Game::main()
         }
 
         // Collisions
-        solveCollisions(&mCharacter, mLevel, SCREEN_WIDTH, SCREEN_HEIGHT);
+        solveCollisions(&mCharacter, &mLevel, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // Clear screen
         SDL_RenderClear(mRenderer);

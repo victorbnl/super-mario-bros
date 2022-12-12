@@ -3,7 +3,8 @@
 
 #include "level.h"
 #include "csv.h"
-#include "tiles.h"
+#include "tile.h"
+#include "tileset.h"
 
 const int SCREEN_HEIGHT = 48*10;
 
@@ -16,10 +17,9 @@ void Level::load(SDL_Renderer* renderer, std::string path)
     std::vector<std::vector<int>> levelData = parseCSVLevel(path);
 
     // Get textures
-    LTexture* tileSet = getTileSet(renderer);
+    mTileset.load(renderer);
 
     // For each line of tiles
-    int x, y;
     for (int i = 0; i < size(levelData); i++)
     {
         std::vector<Tile*> line;
@@ -31,7 +31,7 @@ void Level::load(SDL_Renderer* renderer, std::string path)
             if (tileType > -1)
             {
                 // Add it to the list
-                LTexture* texture = (tileSet+levelData[i][j]);
+                LTexture* texture = mTileset.get(tileType);
                 line.push_back(new Tile(texture));
             }
             else
@@ -40,7 +40,6 @@ void Level::load(SDL_Renderer* renderer, std::string path)
             }
         }
         mTiles.push_back(line);
-        x = 0;
     }
 }
 

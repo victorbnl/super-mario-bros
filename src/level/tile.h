@@ -1,5 +1,5 @@
-#ifndef TILES_INCLUDE_GUARD
-#define TILES_INCLUDE_GUARD
+#ifndef LEVEL_TILE_INCLUDE_GUARD
+#define LEVEL_TILE_INCLUDE_GUARD
 
 #include <vector>
 #include <fstream>
@@ -21,8 +21,5 @@ class Tile
         // Texture
         LTexture* mTexture;
 };
-
-// Get texture set
-LTexture* getTileSet(SDL_Renderer* renderer);
 
 #endif
