@@ -25,9 +25,6 @@ class Tile
         int mPosX, mPosY;
 };
 
-// Parse CSV level file
-std::vector<std::vector<int>> parseCSVLevel();
-
 // Get texture set
 LTexture* getTileSet(SDL_Renderer* renderer);
 
