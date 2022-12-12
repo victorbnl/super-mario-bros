@@ -3,8 +3,10 @@ set(
     game.cpp
     ltexture.cpp
     character.cpp
-    tiles.cpp
     collisions.cpp
+    level/tiles.cpp
+    level/level.cpp
+    level/csv.cpp
 )
 
 add_library(smb_lib ${SOURCES})

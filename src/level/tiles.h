@@ -4,7 +4,7 @@
 #include <vector>
 #include <fstream>
 
-#include "ltexture.h"
+#include "../ltexture.h"
 
 class Tile
 {
@@ -25,8 +25,10 @@ class Tile
         int mPosX, mPosY;
 };
 
-LTexture* getTileSet(SDL_Renderer* renderer);
+// Parse CSV level file
+std::vector<std::vector<int>> parseCSVLevel();
 
-std::vector<Tile*> getTiles(SDL_Renderer* renderer);
+// Get texture set
+LTexture* getTileSet(SDL_Renderer* renderer);
 
 #endif

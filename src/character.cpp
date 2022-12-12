@@ -22,7 +22,7 @@ bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)
     }
 
     // Initialise collider
-    mCollider = {mPosX, mPosY, mTexture.getWidth(), mTexture.getHeight()};
+    mCollider = {(int)mPosX, (int)mPosY, mTexture.getWidth(), mTexture.getHeight()};
 
     return success;
 }

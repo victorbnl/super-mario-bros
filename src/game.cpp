@@ -4,7 +4,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "game.h"
-#include "tiles.h"
+#include "level/level.h"
 #include "collisions.h"
 
 const int SCREEN_HEIGHT = 48*10;
@@ -61,8 +61,8 @@ Game::Game()
         std::cout << "Failed to load character texture" << std::endl;
     }
 
-    // Load tiles
-    mTiles = getTiles(mRenderer);
+    // Load level
+    mLevel.load(mRenderer, "assets/level.csv");
 }
 
 Game::~Game()
@@ -115,7 +115,7 @@ void Game::main()
         }
 
         // Collisions
-        solveCollisions(&mCharacter, SCREEN_WIDTH, SCREEN_HEIGHT);
+        solveCollisions(&mCharacter, mLevel, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // Clear screen
         SDL_RenderClear(mRenderer);
@@ -127,10 +127,7 @@ void Game::main()
         SDL_RenderFillRect(mRenderer, &skyRect);
 
         // Draw tiles
-        for (int i = 0; i < size(mTiles); i++)
-        {
-            mTiles[i]->render(mRenderer);
-        }
+        mLevel.render(mRenderer);
 
         // Update character
         mCharacter.update(mRenderer);

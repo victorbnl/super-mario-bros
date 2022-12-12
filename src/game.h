@@ -6,7 +6,7 @@
 
 #include "ltexture.h"
 #include "character.h"
-#include "tiles.h"
+#include "level/level.h"
 
 class Game
 {
@@ -30,7 +30,7 @@ class Game
         SDL_Renderer* mRenderer;
 
         // Tiles
-        std::vector<Tile*> mTiles;
+        Level mLevel;
 
         // Textures
         LTexture mSkyTexture;

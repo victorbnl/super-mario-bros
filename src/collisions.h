@@ -3,6 +3,6 @@
 
 #include "character.h"
 
-void solveCollisions(Character* character, int winWidth, int winHeight);
+void solveCollisions(Character* character, Level level, int winWidth, int winHeight);
 
 #endif

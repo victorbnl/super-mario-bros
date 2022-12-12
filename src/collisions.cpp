@@ -1,8 +1,10 @@
+#include <vector>
 #include <SDL2/SDL.h>
 
 #include "character.h"
+#include "level/level.h"
 
-void solveCollisions(Character* character, int winWidth, int winHeight)
+void solveCollisions(Character* character, Level level, int winWidth, int winHeight)
 {
     // Check collisions with screen borders
     SDL_Rect charCollider = character->getCollider();
@@ -10,4 +12,6 @@ void solveCollisions(Character* character, int winWidth, int winHeight)
         character->moveX(-charCollider.x);
     if ((charCollider.x + charCollider.w) > winWidth)
         character->moveX(winWidth - (charCollider.x + charCollider.w));
+
+    // Check collisions with map
 }
