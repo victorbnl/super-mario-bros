@@ -4,12 +4,9 @@
 #include <SDL2/SDL_image.h>
 
 #include "game.h"
+#include "constants.h"
 #include "level/level.h"
 #include "collisions.h"
-
-const int SCREEN_HEIGHT = 48*10;
-const int SCREEN_WIDTH = 48*15;
-const int SPEED = 5;
 
 Game::Game()
 {

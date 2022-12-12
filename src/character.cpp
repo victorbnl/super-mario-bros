@@ -2,8 +2,7 @@
 #include <string>
 
 #include "character.h"
-
-const float SPEED = 5;
+#include "constants.h"
 
 Character::Character()
 {

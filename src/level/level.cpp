@@ -2,14 +2,10 @@
 #include <SDL2/SDL.h>
 
 #include "level.h"
+#include "../constants.h"
 #include "csv.h"
 #include "tile.h"
 #include "tileset.h"
-
-const int SCREEN_HEIGHT = 48*10;
-
-const int TILE_WIDTH = 48;
-const int TILE_HEIGHT = 48;
 
 void Level::load(SDL_Renderer* renderer, std::string path)
 {
