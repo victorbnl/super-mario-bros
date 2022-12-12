@@ -9,4 +9,4 @@ set(
     level/csv.cpp
 )
 
-add_library(smb_lib ${SOURCES})
+add_library(${CMAKE_PROJECT_NAME}_lib ${SOURCES})
