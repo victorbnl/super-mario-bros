@@ -36,6 +36,10 @@ void Level::load(SDL_Renderer* renderer, std::string path)
                 LTexture* texture = (tileSet+levelData[i][j]);
                 line.push_back(new Tile(x, y, texture));
             }
+            else
+            {
+                line.push_back(NULL);
+            }
         }
         mTiles.push_back(line);
         x = 0;
