@@ -10,7 +10,7 @@ std::vector<std::vector<int>> parseCSVLevel(std::string path)
     std::ifstream map(path);
     if (map.fail())
     {
-        std::cout << "Failed to load map";
+        std::cout << "Failed to load level data" << std::endl;
     }
 
     // Read file

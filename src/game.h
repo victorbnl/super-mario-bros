@@ -32,9 +32,6 @@ class Game
         // Tiles
         Level mLevel;
 
-        // Textures
-        LTexture mSkyTexture;
-
         // Character
         Character mCharacter;
 };

@@ -49,12 +49,6 @@ Game::Game()
         std::cout << "Failed to create renderer" << std::endl;
     }
 
-    // Load sky texture
-    if (!mSkyTexture.loadFromFile(mRenderer, "assets/sky.png"))
-    {
-        std::cout << "Failed to load sky texture" << std::endl;
-    }
-
     // Load character texture
     if (!mCharacter.loadTextureFromFile(mRenderer, "assets/character.png"))
     {
@@ -62,13 +56,12 @@ Game::Game()
     }
 
     // Load level
-    mLevel.load(mRenderer, "assets/level.csv");
+    mLevel.load(mRenderer, "assets/levels/level.csv");
 }
 
 Game::~Game()
 {
     // Free textures
-    mSkyTexture.free();
     mCharacter.freeTexture();
 
     // Destroy renderer

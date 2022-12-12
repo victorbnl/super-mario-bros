@@ -27,10 +27,10 @@ LTexture* getTileSet(SDL_Renderer* renderer)
         LTexture()
     };
 
-    tileSet[0].loadFromFile(renderer, "assets/grass.png");
-    tileSet[1].loadFromFile(renderer, "assets/dirt.png");
-    tileSet[2].loadFromFile(renderer, "assets/bricks.png");
-    tileSet[3].loadFromFile(renderer, "assets/luck.png");
+    tileSet[0].loadFromFile(renderer, "assets/textures/grass.png");
+    tileSet[1].loadFromFile(renderer, "assets/textures/dirt.png");
+    tileSet[2].loadFromFile(renderer, "assets/textures/bricks.png");
+    tileSet[3].loadFromFile(renderer, "assets/textures/luck.png");
 
     return tileSet;
 }
