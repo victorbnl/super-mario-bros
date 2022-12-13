@@ -6,7 +6,7 @@
 #include "game.h"
 #include "constants.h"
 #include "level/level.h"
-#include "collisions.h"
+#include "collisions/collisions.h"
 
 Game::Game()
 {
@@ -94,18 +94,16 @@ void Game::main()
         // Get keypresses
         const Uint8* keystates = SDL_GetKeyboardState(NULL);
 
-        // Keypresses handlers
+        // Left key
         if (keystates[SDL_SCANCODE_LEFT])
-        {
             mCharacter.moveX(-SPEED);
-        }
+        // Right key
         if (keystates[SDL_SCANCODE_RIGHT])
-        {
             mCharacter.moveX(SPEED);
-        }
 
-        // Collisions
-        solveCollisions(&mCharacter, &mLevel, SCREEN_WIDTH, SCREEN_HEIGHT);
+        // Gravity
+        if (mCharacter.mVel.y < GRAVITY)
+            mCharacter.mVel.y += 1;
 
         // Clear screen
         SDL_RenderClear(mRenderer);
@@ -120,7 +118,12 @@ void Game::main()
         mLevel.render(mRenderer);
 
         // Update character
-        mCharacter.update(mRenderer);
+        mCharacter.update();
+
+        // Collisions
+        solveCollisions(&mCharacter, &mLevel);
+
+        mCharacter.render(mRenderer);
 
         // Update renderer
         SDL_RenderPresent(mRenderer);

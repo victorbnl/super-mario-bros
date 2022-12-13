@@ -7,9 +7,10 @@ const int TILE_HEIGHT = 48;
 
 // Window size
 const int SCREEN_WIDTH = 15 * TILE_WIDTH;
-const int SCREEN_HEIGHT = 10 * TILE_HEIGHT;
+const int SCREEN_HEIGHT = 9 * TILE_HEIGHT;
 
-// Player speed
+// Speed
 const int SPEED = 5;
+const float GRAVITY = 0.5;
 
 #endif

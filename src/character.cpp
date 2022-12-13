@@ -6,8 +6,8 @@
 
 Character::Character()
 {
-    mPosX = 70;
-    mPosY = 200;
+    mPos = {150, 200};
+    mVel = {80, 0};
 }
 
 bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)
@@ -21,7 +21,7 @@ bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)
     }
 
     // Initialise collider
-    mCollider = {(int)mPosX, (int)mPosY, mTexture.getWidth(), mTexture.getHeight()};
+    mCollider = {(int)mPos.x, (int)mPos.y, mTexture.getWidth(), mTexture.getHeight()};
 
     return success;
 }
@@ -33,14 +33,14 @@ void Character::freeTexture()
 
 void Character::moveX(int distance)
 {
-    mPosX += distance;
-    mCollider.x = mPosX;
+    mPos.x += distance;
+    mCollider.x = mPos.x;
 }
 
 void Character::moveY(int distance)
 {
-    mPosY += distance;
-    mCollider.y = mPosY;
+    mPos.y += distance;
+    mCollider.y = mPos.y;
 }
 
 SDL_Rect Character::getCollider()
@@ -48,7 +48,12 @@ SDL_Rect Character::getCollider()
     return mCollider;
 }
 
-void Character::update(SDL_Renderer* renderer)
+void Character::update()
 {
-    mTexture.render(renderer, mPosX, mPosY);
+    moveY(SPEED * mVel.y);
+}
+
+void Character::render(SDL_Renderer* renderer)
+{
+    mTexture.render(renderer, mPos.x, mPos.y);
 }

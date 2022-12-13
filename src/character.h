@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 
 #include "ltexture.h"
+#include "structs.h"
 
 class Character
 {
@@ -23,11 +24,23 @@ class Character
         void moveX(int direction);
         void moveY(int direction);
 
+        // Jump
+        void jump();
+
         // Get collider
         SDL_Rect getCollider();
 
+        // Update character
+        void update();
+
         // Render character
-        void update(SDL_Renderer* renderer);
+        void render(SDL_Renderer* renderer);
+
+        // Character position
+        Position mPos;
+
+        // Character velocity
+        Velocity mVel;
 
     private:
 
@@ -37,8 +50,7 @@ class Character
         // Collider
         SDL_Rect mCollider;
 
-        // Character position
-        float mPosX, mPosY;
+        bool mIsJumping;
 };
 
 #endif

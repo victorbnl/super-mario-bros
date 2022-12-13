@@ -28,20 +28,24 @@ void Level::load(SDL_Renderer* renderer, std::string path)
             {
                 // Add it to the list
                 LTexture* texture = mTileset.get(tileType);
-                line.push_back(new Tile(texture));
+                line.push_back(new Tile(tileType, texture));
             }
             else
             {
-                line.push_back(new Tile(NULL));
+                line.push_back(new Tile(tileType, NULL));
             }
         }
         mTiles.push_back(line);
     }
 }
 
-Tile* getTileAt(int x, int y)
+Tile* Level::getTileAt(int x, int y)
 {
-    throw "Not implemented";
+    // Find index in mTiles
+    int i = y / TILE_HEIGHT;
+    int j = x / TILE_WIDTH;
+
+    return mTiles[i][j];
 }
 
 void Level::render(SDL_Renderer* renderer)
@@ -53,8 +57,8 @@ void Level::render(SDL_Renderer* renderer)
         for (int j = 0; j < size(mTiles[i]); j++)
         {
             // Render tile
-            int x = j*TILE_WIDTH;
-            int y = SCREEN_HEIGHT-((size(mTiles))*48)+i*TILE_HEIGHT;
+            int x = j * TILE_WIDTH;
+            int y = i * TILE_HEIGHT;
             mTiles[i][j]->render(renderer, x, y);
         }
     }

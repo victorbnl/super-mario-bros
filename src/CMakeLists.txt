@@ -3,7 +3,7 @@ set(
     game.cpp
     ltexture.cpp
     character.cpp
-    collisions.cpp
+    collisions/collisions.cpp
     level/tile.cpp
     level/level.cpp
     level/csv.cpp
