@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <SDL2/SDL.h>
 
 #include "collisions.h"
@@ -70,7 +71,7 @@ Vector getCollisionSolution(SDL_Rect colliderA, SDL_Rect colliderB)
     return collision;
 }
 
-Vector getScreenBordersCollisionSolution(SDL_Rect collider)
+Vector getLevelBordersCollisionSolution(SDL_Rect collider, Level* level)
 {
     SidesCoords a = getSidesCoords(collider);
     Vector solution {0, 0};
@@ -79,15 +80,25 @@ Vector getScreenBordersCollisionSolution(SDL_Rect collider)
     if (a.left < 0)
         solution.x = -a.left;
 
+    // Right border
+    if (a.right > level->getWidth())
+        solution.x = a.right - level->getWidth();
+
     // Top border
     if (a.top < 0)
         solution.y = -a.top;
 
     // Bottom border
     if (a.bottom > SCREEN_HEIGHT)
-        solution.y = SCREEN_HEIGHT - a.bottom - 20;
+        solution.y = SCREEN_HEIGHT - a.bottom;
 
     return solution;
+}
+
+void moveCharacter(Vector vector, SDL_Rect charCollider, Character* character, Level* level)
+{
+    character->pos.x = std::clamp(character->pos.x + vector.x, 0, level->getWidth()-charCollider.w-10);
+    character->pos.y = std::clamp(character->pos.y + vector.y, 0, SCREEN_HEIGHT-charCollider.h-10);
 }
 
 void solveCollisions(Character* character, Level* level)
@@ -95,9 +106,8 @@ void solveCollisions(Character* character, Level* level)
     SDL_Rect charCollider = character->getCollider();
 
     // Screen borders
-    Vector screenBordersCollisionSolution = getScreenBordersCollisionSolution(charCollider);
-    character->moveX(screenBordersCollisionSolution.x);
-    character->moveY(screenBordersCollisionSolution.y);
+    Vector levelBordersCollisionSolution = getLevelBordersCollisionSolution(charCollider, level);
+    moveCharacter(levelBordersCollisionSolution, charCollider, character, level);
 
     // Check collisions with level tiles
 
@@ -146,8 +156,8 @@ void solveCollisions(Character* character, Level* level)
     // Determine greatest moves
     int xMove = maxAbsValue(xMoves);
     int yMove = maxAbsValue(yMoves);
+    Vector move {xMove, yMove};
 
     // Move character
-    character->moveX(xMove);
-    character->moveY(yMove);
+    moveCharacter(move, charCollider, character, level);
 }

@@ -51,6 +51,9 @@ SDL_Rect Character::getCollider()
 
 void Character::update()
 {
+    mCollider.x = pos.x;
+    mCollider.y = pos.y;
+
     moveY(SPEED * mVel.y);
 }
 
