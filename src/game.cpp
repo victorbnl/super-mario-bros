@@ -5,6 +5,7 @@
 
 #include "game.h"
 #include "constants.h"
+#include "camera.h"
 #include "level/level.h"
 #include "collisions/collisions.h"
 
@@ -45,6 +46,9 @@ Game::Game()
     {
         std::cout << "Failed to create renderer" << std::endl;
     }
+
+    // Initialise camera
+    mCamera.followCharacter(&mCharacter);
 
     // Load character texture
     if (!mCharacter.loadTextureFromFile(mRenderer, "assets/character.png"))
@@ -116,16 +120,20 @@ void Game::main()
         skyRect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
         SDL_RenderFillRect(mRenderer, &skyRect);
 
-        // Draw tiles
-        mLevel.render(mRenderer);
-
         // Update character
         mCharacter.update();
 
         // Collisions
         solveCollisions(&mCharacter, &mLevel);
 
-        mCharacter.render(mRenderer);
+        // Update camera
+        mCamera.update();
+
+        // Draw tiles
+        mLevel.render(mRenderer, &mCamera);
+
+        // Render character
+        mCharacter.render(mRenderer, &mCamera);
 
         // Update renderer
         SDL_RenderPresent(mRenderer);

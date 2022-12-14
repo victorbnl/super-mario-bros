@@ -3,6 +3,7 @@ set(
     game.cpp
     ltexture.cpp
     character.cpp
+    camera.cpp
     collisions/collisions.cpp
     collisions/math.cpp
     level/tile.cpp

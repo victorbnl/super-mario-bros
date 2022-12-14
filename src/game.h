@@ -4,6 +4,7 @@
 #include <vector>
 #include <SDL2/SDL.h>
 
+#include "camera.h"
 #include "ltexture.h"
 #include "character.h"
 #include "level/level.h"
@@ -28,6 +29,9 @@ class Game
 
         // Renderer
         SDL_Renderer* mRenderer;
+
+        // Camera
+        Camera mCamera;
 
         // Tiles
         Level mLevel;

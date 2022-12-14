@@ -6,6 +6,7 @@
 #include "csv.h"
 #include "tile.h"
 #include "tileset.h"
+#include "../camera.h"
 
 void Level::load(SDL_Renderer* renderer, std::string path)
 {
@@ -48,7 +49,12 @@ Tile* Level::getTileAt(int x, int y)
     return mTiles[i][j];
 }
 
-void Level::render(SDL_Renderer* renderer)
+int Level::getWidth()
+{
+    return size(mTiles[0]) * TILE_SIZE;
+}
+
+void Level::render(SDL_Renderer* renderer, Camera* camera)
 {
     // For line of tiles
     for (int i = 0; i < size(mTiles); i++)
@@ -57,7 +63,7 @@ void Level::render(SDL_Renderer* renderer)
         for (int j = 0; j < size(mTiles[i]); j++)
         {
             // Render tile
-            int x = j * TILE_SIZE;
+            int x = j * TILE_SIZE - camera->x;
             int y = i * TILE_SIZE;
             mTiles[i][j]->render(renderer, x, y);
         }

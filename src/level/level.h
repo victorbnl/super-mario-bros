@@ -6,6 +6,7 @@
 
 #include "tile.h"
 #include "tileset.h"
+#include "../camera.h"
 
 class Level
 {
@@ -17,8 +18,11 @@ class Level
         // Get tile at coordinates (x, y)
         Tile* getTileAt(int x, int y);
 
+        // Get level width
+        int getWidth();
+
         // Render level (render each tile)
-        void render(SDL_Renderer* renderer);
+        void render(SDL_Renderer* renderer, Camera* camera);
 
     private:
 

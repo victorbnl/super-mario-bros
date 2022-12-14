@@ -79,10 +79,6 @@ Vector getScreenBordersCollisionSolution(SDL_Rect collider)
     if (a.left < 0)
         solution.x = -a.left;
 
-    // Right border
-    if (a.right > SCREEN_WIDTH)
-        solution.x = SCREEN_WIDTH - a.right;
-
     // Top border
     if (a.top < 0)
         solution.y = -a.top;

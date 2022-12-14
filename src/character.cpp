@@ -3,10 +3,11 @@
 
 #include "character.h"
 #include "constants.h"
+#include "camera.h"
 
 Character::Character()
 {
-    mPos = {150, 200};
+    pos = {150, 200};
     mVel = {80, 0};
 }
 
@@ -21,7 +22,7 @@ bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)
     }
 
     // Initialise collider
-    mCollider = {(int)mPos.x, (int)mPos.y, mTexture.getWidth(), mTexture.getHeight()};
+    mCollider = {(int)pos.x, (int)pos.y, mTexture.getWidth(), mTexture.getHeight()};
 
     return success;
 }
@@ -33,14 +34,14 @@ void Character::freeTexture()
 
 void Character::moveX(int distance)
 {
-    mPos.x += distance;
-    mCollider.x = mPos.x;
+    pos.x += distance;
+    mCollider.x = pos.x;
 }
 
 void Character::moveY(int distance)
 {
-    mPos.y += distance;
-    mCollider.y = mPos.y;
+    pos.y += distance;
+    mCollider.y = pos.y;
 }
 
 SDL_Rect Character::getCollider()
@@ -53,7 +54,9 @@ void Character::update()
     moveY(SPEED * mVel.y);
 }
 
-void Character::render(SDL_Renderer* renderer)
+void Character::render(SDL_Renderer* renderer, Camera* camera)
 {
-    mTexture.render(renderer, mPos.x, mPos.y);
+    int x = pos.x - camera->x;
+    int y = pos.y;
+    mTexture.render(renderer, x, y);
 }

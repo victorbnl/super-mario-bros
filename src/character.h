@@ -6,6 +6,7 @@
 
 #include "ltexture.h"
 #include "structs.h"
+#include "camera.h"
 
 class Character
 {
@@ -34,10 +35,10 @@ class Character
         void update();
 
         // Render character
-        void render(SDL_Renderer* renderer);
+        void render(SDL_Renderer* renderer, Camera* camera);
 
         // Character position
-        Position mPos;
+        Position pos;
 
         // Character velocity
         Velocity mVel;
