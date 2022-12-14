@@ -10,7 +10,7 @@ const int SCREEN_HEIGHT = 9 * TILE_SIZE;
 const int SCREEN_PADDING_X = 150;
 
 // Speed
-const int SPEED = 10;
+const int SPEED = 6;
 const float GRAVITY = 0.5;
 
 #endif
