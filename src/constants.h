@@ -1,5 +1,5 @@
-#ifndef CONSTANTS_INCLUDE_GUARD
-#define CONSTANTS_INCLUDE_GUARD
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
 
 // Tile size
 const int TILE_SIZE = 48;

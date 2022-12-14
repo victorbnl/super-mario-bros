@@ -1,5 +1,5 @@
-#ifndef LEVEL_TILESET_INCLUDE_GUARD
-#define LEVEL_TILESET_INCLUDE_GUARD
+#ifndef LEVEL_TILESET_H
+#define LEVEL_TILESET_H
 
 #include <array>
 

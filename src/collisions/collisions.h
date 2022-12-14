@@ -1,5 +1,5 @@
-#ifndef COLLISIONS_COLLISIONS_INCLUDE_GUARD
-#define COLLISIONS_COLLISIONS_INCLUDE_GUARD
+#ifndef COLLISIONS_COLLISIONS_H
+#define COLLISIONS_COLLISIONS_H
 
 #include "../character.h"
 #include "../level/level.h"

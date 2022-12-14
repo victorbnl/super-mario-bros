@@ -1,5 +1,5 @@
-#ifndef STRUCTS_INCLUDE_GUARD
-#define STRUCTS_INCLUDE_GUARD
+#ifndef STRUCTS_H
+#define STRUCTS_H
 
 struct Position
 {

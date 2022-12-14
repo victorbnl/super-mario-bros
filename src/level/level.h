@@ -1,5 +1,5 @@
-#ifndef LEVEL_INCLUDE_GUARD
-#define LEVEL_INCLUDE_GUARD
+#ifndef LEVEL_LEVEL_H
+#define LEVEL_LEVEL_H
 
 #include <vector>
 #include <SDL2/SDL.h>

@@ -1,5 +1,5 @@
-#ifndef LEVEL_TILE_INCLUDE_GUARD
-#define LEVEL_TILE_INCLUDE_GUARD
+#ifndef LEVEL_TILE_H
+#define LEVEL_TILE_H
 
 #include <vector>
 #include <fstream>

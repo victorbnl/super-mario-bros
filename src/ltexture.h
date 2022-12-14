@@ -1,5 +1,5 @@
-#ifndef LTEXTURE_INCLUDE_GUARD
-#define LTEXTURE_INCLUDE_GUARD
+#ifndef LTEXTURE_H
+#define LTEXTURE_H
 
 #include <string>
 #include <SDL2/SDL.h>

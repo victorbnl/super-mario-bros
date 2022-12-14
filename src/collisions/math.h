@@ -1,5 +1,5 @@
-#ifndef MATH_INCLUDE_GUARD
-#define MATH_INCLUDE_GUARD
+#ifndef COLLISIONS_MATH_H
+#define COLLISIONS_MATH_H
 
 #include <vector>
 #include <SDL2/SDL.h>

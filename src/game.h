@@ -1,5 +1,5 @@
-#ifndef GAME_INCLUDE_GUARD
-#define GAME_INCLUDE_GUARD
+#ifndef GAME_H
+#define GAME_H
 
 #include <vector>
 #include <SDL2/SDL.h>

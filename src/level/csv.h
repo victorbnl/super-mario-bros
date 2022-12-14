@@ -1,5 +1,5 @@
-#ifndef LEVEL_CSV_INCLUDE_GUARD
-#define LEVEL_CSV_INCLUDE_GUARD
+#ifndef LEVEL_CSV_H
+#define LEVEL_CSV_H
 
 #include <vector>
 #include <string>
