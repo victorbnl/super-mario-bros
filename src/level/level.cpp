@@ -42,8 +42,8 @@ void Level::load(SDL_Renderer* renderer, std::string path)
 Tile* Level::getTileAt(int x, int y)
 {
     // Find index in mTiles
-    int i = y / TILE_HEIGHT;
-    int j = x / TILE_WIDTH;
+    int i = y / TILE_SIZE;
+    int j = x / TILE_SIZE;
 
     return mTiles[i][j];
 }
@@ -57,8 +57,8 @@ void Level::render(SDL_Renderer* renderer)
         for (int j = 0; j < size(mTiles[i]); j++)
         {
             // Render tile
-            int x = j * TILE_WIDTH;
-            int y = i * TILE_HEIGHT;
+            int x = j * TILE_SIZE;
+            int y = i * TILE_SIZE;
             mTiles[i][j]->render(renderer, x, y);
         }
     }

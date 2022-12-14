@@ -4,6 +4,7 @@ set(
     ltexture.cpp
     character.cpp
     collisions/collisions.cpp
+    collisions/math.cpp
     level/tile.cpp
     level/level.cpp
     level/csv.cpp

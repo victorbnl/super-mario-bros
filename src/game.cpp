@@ -100,6 +100,8 @@ void Game::main()
         // Right key
         if (keystates[SDL_SCANCODE_RIGHT])
             mCharacter.moveX(SPEED);
+        if (keystates[SDL_SCANCODE_UP])
+            mCharacter.moveY(-SPEED*2);
 
         // Gravity
         if (mCharacter.mVel.y < GRAVITY)
