@@ -1,8 +1,8 @@
+#include "ltexture.h"
+
 #include <iostream>
 #include <memory>
 #include <SDL2/SDL_image.h>
-
-#include "ltexture.h"
 
 LTexture::LTexture()
 {

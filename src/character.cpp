@@ -1,7 +1,8 @@
+#include "character.h"
+
 #include <iostream>
 #include <string>
 
-#include "character.h"
 #include "constants.h"
 #include "camera.h"
 

@@ -1,8 +1,8 @@
+#include "csv.h"
+
 #include <string>
 #include <fstream>
 #include <iostream>
-
-#include "csv.h"
 
 std::vector<std::vector<int>> parseCSVLevel(std::string path)
 {

@@ -1,7 +1,8 @@
+#include "camera.h"
+
 #include <algorithm>
 #include <SDL2/SDL.h>
 
-#include "camera.h"
 #include "structs.h"
 #include "constants.h"
 #include "character.h"

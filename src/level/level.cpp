@@ -1,7 +1,8 @@
+#include "level.h"
+
 #include <string>
 #include <SDL2/SDL.h>
 
-#include "level.h"
 #include "../constants.h"
 #include "csv.h"
 #include "tile.h"

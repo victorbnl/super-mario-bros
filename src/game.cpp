@@ -1,9 +1,10 @@
+#include "game.h"
+
 #include <iostream>
 #include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "game.h"
 #include "constants.h"
 #include "camera.h"
 #include "level/level.h"

@@ -1,6 +1,7 @@
+#include "tileset.h"
+
 #include <SDL2/SDL.h>
 
-#include "tileset.h"
 #include "../ltexture.h"
 
 void Tileset::load(SDL_Renderer* renderer)

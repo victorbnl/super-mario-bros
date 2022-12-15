@@ -1,9 +1,10 @@
+#include "tile.h"
+
 #include <iostream>
 #include <vector>
 #include <array>
 #include <SDL2/SDL.h>
 
-#include "tile.h"
 #include "../ltexture.h"
 
 Tile::Tile(int type, LTexture* texture)
