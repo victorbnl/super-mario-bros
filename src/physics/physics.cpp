@@ -21,6 +21,7 @@ void PhysicsEngine::update()
         mCharacter->vel.y += 1;
 
     // Apply forces
+    mCharacter->pos.x += mCharacter->vel.x * SPEED;
     mCharacter->pos.y += mCharacter->vel.y * SPEED;
 
     // Update character's collider

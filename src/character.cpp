@@ -8,7 +8,7 @@
 Character::Character()
 {
     pos = {150, 200};
-    vel = {80, 0};
+    vel = {0, 0};
 }
 
 bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)
