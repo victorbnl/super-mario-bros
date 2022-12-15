@@ -48,7 +48,7 @@ Game::Game()
     }
 
     // Load character texture
-    if (!mCharacter.loadTextureFromFile(mRenderer, "assets/character.png"))
+    if (!mCharacter.loadTextureFromFile(mRenderer, "assets/textures/character.png"))
     {
         std::cout << "Failed to load character texture" << std::endl;
     }
