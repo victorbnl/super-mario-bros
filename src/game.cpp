@@ -47,9 +47,6 @@ Game::Game()
         std::cout << "Failed to create renderer" << std::endl;
     }
 
-    // Initialise camera
-    mCamera.followCharacter(&mCharacter);
-
     // Load character texture
     if (!mCharacter.loadTextureFromFile(mRenderer, "assets/character.png"))
     {
@@ -59,8 +56,13 @@ Game::Game()
     // Load level
     mLevel.load(mRenderer, "assets/levels/level.csv");
 
-    // Initialise physics engine
+    // Calculate level boundaries
     Rectangle levelBoundaries {0, 0, mLevel.getWidth(), SCREEN_HEIGHT};
+
+    // Initialise camera
+    mCamera.init(&mCharacter, levelBoundaries);
+
+    // Initialise physics engine
     mPhysics.init(&mCharacter, &mLevel, levelBoundaries);
 }
 

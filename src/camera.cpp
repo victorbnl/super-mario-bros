@@ -12,29 +12,31 @@ Camera::Camera()
     x = 0;
 }
 
-void Camera::followCharacter(Character* character)
+void Camera::init(Character* character, Rectangle levelBoundaries)
 {
     mCharacter = character;
+    mLevelBoundaries = levelBoundaries;
 }
 
 void Camera::update()
 {
     int charOnScreenPosX = mCharacter->pos.x - x;
 
+    int moveX = 0;
+
     // If character is too much at the left
     if (charOnScreenPosX < SCREEN_PADDING_X)
     {
-        // If camera is after the beginning of the level
-        if (x >= 0)
-        {
-            // std::max ensures camera doesn't go to the left of the level
-            x = std::max(x - (SCREEN_PADDING_X - charOnScreenPosX), 0);
-        }
+        moveX = -(SCREEN_PADDING_X - charOnScreenPosX);
     }
 
     // If character is too much at the right
     if (charOnScreenPosX > SCREEN_WIDTH - SCREEN_PADDING_X)
     {
-        x += (mCharacter->pos.x) - (x + SCREEN_WIDTH - SCREEN_PADDING_X);
+        moveX = (mCharacter->pos.x) - (x + SCREEN_WIDTH - SCREEN_PADDING_X);
     }
+
+    // Move camera
+    // std::clamp ensure camera stays inside the level
+    x = std::clamp(x + moveX, mLevelBoundaries.x, mLevelBoundaries.x + mLevelBoundaries.w - SCREEN_WIDTH);
 }

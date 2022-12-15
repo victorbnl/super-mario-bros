@@ -13,7 +13,7 @@ class Camera
 
         Camera();
 
-        void followCharacter(Character* character);
+        void init(Character* character, Rectangle levelBoundaries);
 
         void update();
 
@@ -22,6 +22,7 @@ class Camera
     private:
 
         Character* mCharacter;
+        Rectangle mLevelBoundaries;
 };
 
 #endif
