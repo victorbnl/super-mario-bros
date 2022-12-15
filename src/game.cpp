@@ -58,6 +58,9 @@ Game::Game()
 
     // Load level
     mLevel.load(mRenderer, "assets/levels/level.csv");
+
+    // Initialise physics engine
+    mPhysics.init(&mCharacter);
 }
 
 Game::~Game()
@@ -107,10 +110,6 @@ void Game::main()
         if (keystates[SDL_SCANCODE_UP])
             mCharacter.moveY(-SPEED*2);
 
-        // Gravity
-        if (mCharacter.vel.y < GRAVITY)
-            mCharacter.vel.y += 1;
-
         // Clear screen
         SDL_RenderClear(mRenderer);
 
@@ -120,8 +119,8 @@ void Game::main()
         skyRect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
         SDL_RenderFillRect(mRenderer, &skyRect);
 
-        // Update character
-        mCharacter.update();
+        // Update physics (apply forces)
+        mPhysics.update();
 
         // Collisions
         solveCollisions(&mCharacter, &mLevel);

@@ -49,12 +49,10 @@ SDL_Rect Character::getCollider()
     return mCollider;
 }
 
-void Character::update()
+void Character::updateCollider()
 {
     mCollider.x = pos.x;
     mCollider.y = pos.y;
-
-    moveY(SPEED * vel.y);
 }
 
 void Character::render(SDL_Renderer* renderer, Camera* camera)

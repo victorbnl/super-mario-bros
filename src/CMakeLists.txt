@@ -4,6 +4,7 @@ set(
     ltexture.cpp
     character.cpp
     camera.cpp
+    physics/physics.cpp
     collisions/collisions.cpp
     collisions/math.cpp
     level/tile.cpp

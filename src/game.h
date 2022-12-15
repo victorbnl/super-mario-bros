@@ -8,6 +8,7 @@
 #include "ltexture.h"
 #include "character.h"
 #include "level/level.h"
+#include "physics/physics.h"
 
 class Game
 {
@@ -38,6 +39,9 @@ class Game
 
         // Character
         Character mCharacter;
+
+        // Physics engine
+        PhysicsEngine mPhysics;
 };
 
 #endif

@@ -31,8 +31,8 @@ class Character
         // Get collider
         SDL_Rect getCollider();
 
-        // Update character
-        void update();
+        // Update character's collider
+        void updateCollider();
 
         // Render character
         void render(SDL_Renderer* renderer, Camera* camera);
