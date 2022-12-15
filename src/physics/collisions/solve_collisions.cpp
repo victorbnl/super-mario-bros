@@ -162,4 +162,10 @@ void solveCollisions(Character* character, Level* level, Rectangle levelBoundari
     Vector levelBordersCollisionSolution = getLevelBordersCollisionSolution(charCollider, level, levelBoundaries);
     character->pos.x += levelBordersCollisionSolution.x;
     character->pos.y += levelBordersCollisionSolution.y;
+
+    // Update character velocity accordingly
+    if (move.x != 0 || levelBordersCollisionSolution.x != 0)
+        character->vel.x = 0;
+    if (move.y != 0 || levelBordersCollisionSolution.y != 0)
+        character->vel.y = 0;
 }

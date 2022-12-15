@@ -44,6 +44,12 @@ void Character::moveY(int distance)
     mCollider.y = pos.y;
 }
 
+void Character::jump()
+{
+    if (vel.y == 0)
+        vel.y = -JUMP_HEIGHT;
+}
+
 SDL_Rect Character::getCollider()
 {
     return mCollider;

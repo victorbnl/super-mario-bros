@@ -50,8 +50,6 @@ class Character
 
         // Collider
         SDL_Rect mCollider;
-
-        bool mIsJumping;
 };
 
 #endif

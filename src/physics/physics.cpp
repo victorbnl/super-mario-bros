@@ -18,7 +18,7 @@ void PhysicsEngine::update()
 {
     // Add gravity
     if (mCharacter->vel.y < GRAVITY)
-        mCharacter->vel.y += 1;
+        mCharacter->vel.y += GRAVITY_STEPS;
 
     // Apply forces
     mCharacter->pos.x += mCharacter->vel.x * SPEED;

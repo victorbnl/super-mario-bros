@@ -11,6 +11,8 @@ const int SCREEN_PADDING_X = 150;
 
 // Speed
 const int SPEED = 6;
-const float GRAVITY = 0.5;
+const float GRAVITY = 2;
+const float GRAVITY_STEPS = 0.2;
+const float JUMP_HEIGHT = GRAVITY_STEPS * 12;
 
 #endif

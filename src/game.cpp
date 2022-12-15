@@ -109,7 +109,7 @@ void Game::main()
         if (keystates[SDL_SCANCODE_RIGHT])
             mCharacter.moveX(SPEED);
         if (keystates[SDL_SCANCODE_UP])
-            mCharacter.moveY(-SPEED*2);
+            mCharacter.jump();
 
         // Clear screen
         SDL_RenderClear(mRenderer);
