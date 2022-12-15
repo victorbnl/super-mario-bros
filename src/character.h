@@ -41,7 +41,7 @@ class Character
         Position pos;
 
         // Character velocity
-        Velocity mVel;
+        Velocity vel;
 
     private:
 

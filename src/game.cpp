@@ -108,8 +108,8 @@ void Game::main()
             mCharacter.moveY(-SPEED*2);
 
         // Gravity
-        if (mCharacter.mVel.y < GRAVITY)
-            mCharacter.mVel.y += 1;
+        if (mCharacter.vel.y < GRAVITY)
+            mCharacter.vel.y += 1;
 
         // Clear screen
         SDL_RenderClear(mRenderer);

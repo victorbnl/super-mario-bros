@@ -8,7 +8,7 @@
 Character::Character()
 {
     pos = {150, 200};
-    mVel = {80, 0};
+    vel = {80, 0};
 }
 
 bool Character::loadTextureFromFile(SDL_Renderer* renderer, std::string path)
@@ -54,7 +54,7 @@ void Character::update()
     mCollider.x = pos.x;
     mCollider.y = pos.y;
 
-    moveY(SPEED * mVel.y);
+    moveY(SPEED * vel.y);
 }
 
 void Character::render(SDL_Renderer* renderer, Camera* camera)
