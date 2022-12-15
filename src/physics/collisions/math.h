@@ -1,5 +1,5 @@
-#ifndef COLLISIONS_MATH_H
-#define COLLISIONS_MATH_H
+#ifndef PHYSICS_COLLISIONS_MATH_H
+#define PHYSICS_COLLISIONS_MATH_H
 
 #include <vector>
 #include <SDL2/SDL.h>

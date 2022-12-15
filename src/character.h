@@ -38,7 +38,7 @@ class Character
         void render(SDL_Renderer* renderer, Camera* camera);
 
         // Character position
-        Position pos;
+        Coordinates pos;
 
         // Character velocity
         Velocity vel;

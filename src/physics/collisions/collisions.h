@@ -1,12 +1,11 @@
-#ifndef PHYSICS_PHYSICS_H
-#define PHYSICS_PHYSICS_H
+#ifndef PHYSICS_COLLISIONS_COLLISIONS_H
+#define PHYSICS_COLLISIONS_COLLISIONS_H
 
-#include "../character.h"
-#include "../level/level.h"
-#include "../structs.h"
-#include "collisions/collisions.h"
+#include "../../character.h"
+#include "../../level/level.h"
+#include "../../structs.h"
 
-class PhysicsEngine
+class CollisionsEngine
 {
     public:
 
@@ -20,7 +19,7 @@ class PhysicsEngine
 
         Character* mCharacter;
         Level* mLevel;
-        CollisionsEngine mCollisions;
+        Rectangle mLevelBoundaries;
 };
 
 #endif

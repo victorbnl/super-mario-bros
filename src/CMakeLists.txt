@@ -5,8 +5,9 @@ set(
     character.cpp
     camera.cpp
     physics/physics.cpp
-    collisions/collisions.cpp
-    collisions/math.cpp
+    physics/collisions/solve_collisions.cpp
+    physics/collisions/collisions.cpp
+    physics/collisions/math.cpp
     level/tile.cpp
     level/level.cpp
     level/csv.cpp

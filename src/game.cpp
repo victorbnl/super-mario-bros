@@ -7,7 +7,7 @@
 #include "constants.h"
 #include "camera.h"
 #include "level/level.h"
-#include "collisions/collisions.h"
+#include "physics/physics.h"
 
 Game::Game()
 {
@@ -60,7 +60,8 @@ Game::Game()
     mLevel.load(mRenderer, "assets/levels/level.csv");
 
     // Initialise physics engine
-    mPhysics.init(&mCharacter);
+    Rectangle levelBoundaries {0, 0, mLevel.getWidth(), SCREEN_HEIGHT};
+    mPhysics.init(&mCharacter, &mLevel, levelBoundaries);
 }
 
 Game::~Game()
@@ -119,11 +120,8 @@ void Game::main()
         skyRect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
         SDL_RenderFillRect(mRenderer, &skyRect);
 
-        // Update physics (apply forces)
+        // Update physics (apply forces and solve collisions)
         mPhysics.update();
-
-        // Collisions
-        solveCollisions(&mCharacter, &mLevel);
 
         // Update camera
         mCamera.update();

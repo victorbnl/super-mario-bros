@@ -1,3 +1,5 @@
+#include "solve_collisions.h"
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -5,11 +7,11 @@
 
 #include "collisions.h"
 #include "math.h"
-#include "structs.h"
-#include "../constants.h"
-#include "../character.h"
-#include "../level/level.h"
-#include "../level/tile.h"
+#include "../../structs.h"
+#include "../../constants.h"
+#include "../../character.h"
+#include "../../level/level.h"
+#include "../../level/tile.h"
 
 std::vector<Coordinates> getCloseTilesCoords(SDL_Rect charCollider)
 {
@@ -71,7 +73,7 @@ Vector getCollisionSolution(SDL_Rect colliderA, SDL_Rect colliderB)
     return collision;
 }
 
-Vector getLevelBordersCollisionSolution(SDL_Rect collider, Level* level)
+Vector getLevelBordersCollisionSolution(SDL_Rect collider, Level* level, Rectangle levelBoundaries)
 {
     SidesCoords a = getSidesCoords(collider);
     Vector solution {0, 0};
@@ -81,16 +83,16 @@ Vector getLevelBordersCollisionSolution(SDL_Rect collider, Level* level)
         solution.x = -a.left;
 
     // Right border
-    if (a.right > level->getWidth())
-        solution.x = a.right - level->getWidth();
+    if (a.right > levelBoundaries.w)
+        solution.x = a.right - levelBoundaries.w;
 
     // Top border
     if (a.top < 0)
         solution.y = -a.top;
 
     // Bottom border
-    if (a.bottom > SCREEN_HEIGHT)
-        solution.y = SCREEN_HEIGHT - a.bottom;
+    if (a.bottom > levelBoundaries.h - 10)
+        solution.y = levelBoundaries.h - a.bottom - 10;
 
     return solution;
 }
@@ -101,15 +103,9 @@ void moveCharacter(Vector vector, SDL_Rect charCollider, Character* character, L
     character->pos.y = std::clamp(character->pos.y + vector.y, 0, SCREEN_HEIGHT-charCollider.h-10);
 }
 
-void solveCollisions(Character* character, Level* level)
+void solveCollisions(Character* character, Level* level, Rectangle levelBoundaries)
 {
     SDL_Rect charCollider = character->getCollider();
-
-    // Screen borders
-    Vector levelBordersCollisionSolution = getLevelBordersCollisionSolution(charCollider, level);
-    moveCharacter(levelBordersCollisionSolution, charCollider, character, level);
-
-    // Check collisions with level tiles
 
     // Get coordinates of tiles around the player
     std::vector<Coordinates> closeTilesCoords = getCloseTilesCoords(charCollider);
@@ -159,5 +155,11 @@ void solveCollisions(Character* character, Level* level)
     Vector move {xMove, yMove};
 
     // Move character
-    moveCharacter(move, charCollider, character, level);
+    character->pos.x += move.x;
+    character->pos.y += move.y;
+
+    // Screen borders
+    Vector levelBordersCollisionSolution = getLevelBordersCollisionSolution(charCollider, level, levelBoundaries);
+    character->pos.x += levelBordersCollisionSolution.x;
+    character->pos.y += levelBordersCollisionSolution.y;
 }

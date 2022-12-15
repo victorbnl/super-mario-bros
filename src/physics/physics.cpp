@@ -4,10 +4,14 @@
 #include "../level/level.h"
 #include "../constants.h"
 
-void PhysicsEngine::init(Character* character)
+void PhysicsEngine::init(Character* character, Level* level, Rectangle levelBoundaries)
 {
     // Initialise variables
     mCharacter = character;
+    mLevel = level;
+
+    // Initialise collisions engine
+    mCollisions.init(character, level, levelBoundaries);
 }
 
 void PhysicsEngine::update()
@@ -21,4 +25,7 @@ void PhysicsEngine::update()
 
     // Update character's collider
     mCharacter->updateCollider();
+
+    // Update collisions
+    mCollisions.update();
 }
