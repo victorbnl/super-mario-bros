@@ -12,50 +12,15 @@
 
 Game::Game()
 {
-    // Initialise SDL
-    if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-    {
-        std::cout << "Failed to initialise SDL" << std::endl;
-    }
-
-    // Initialise PNG image loader
-    int imgFlags = IMG_INIT_PNG;
-    if (!(IMG_Init(imgFlags) & imgFlags))
-    {
-        std::cout << "Failed to initialise PNG image loader" << std::endl;
-    }
-
-    // Create a window
-    mWindow = SDL_CreateWindow(
-        "Super Mario Bros",
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED,
-        SCREEN_WIDTH,
-        SCREEN_HEIGHT,
-        SDL_WINDOW_SHOWN
-    );
-
-    if (mWindow == NULL)
-    {
-        std::cout << "Failed to initialise window" << std::endl;
-    }
-
-    // Create renderer
-    mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
-    if (mRenderer == NULL)
-    {
-        std::cout << "Failed to create renderer" << std::endl;
-    }
+    // Load background texture
+    mBackgroundTexture = mWindow.loadTexture("assets/textures/sky.png");
 
     // Load character texture
-    if (!mCharacter.loadTextureFromFile(mRenderer, "assets/textures/character.png"))
-    {
-        std::cout << "Failed to load character texture" << std::endl;
-    }
+    LTexture* characterTexture = mWindow.loadTexture("assets/textures/character.png");
+    mCharacter.init(characterTexture);
 
     // Load level
-    mLevel.load(mRenderer, "assets/levels/level.csv");
+    mLevel.load(&mWindow, "assets/levels/level.csv");
 
     // Calculate level boundaries
     Rectangle levelBoundaries {0, 0, mLevel.getWidth(), SCREEN_HEIGHT};
@@ -65,24 +30,6 @@ Game::Game()
 
     // Initialise physics engine
     mPhysics.init(&mCharacter, &mLevel, levelBoundaries);
-}
-
-Game::~Game()
-{
-    // Free textures
-    mCharacter.freeTexture();
-
-    // Destroy renderer
-    SDL_DestroyRenderer(mRenderer);
-    mRenderer = NULL;
-
-    // Destroy window
-    SDL_DestroyWindow(mWindow);
-    mWindow = NULL;
-
-    // Quit SDL
-    IMG_Quit();
-    SDL_Quit();
 }
 
 void Game::main()
@@ -114,28 +61,35 @@ void Game::main()
         if (keystates[SDL_SCANCODE_UP])
             mCharacter.jump();
 
-        // Clear screen
-        SDL_RenderClear(mRenderer);
-
-        // Draw sky
-        SDL_SetRenderDrawColor(mRenderer, 0, 169, 255, SDL_ALPHA_OPAQUE);
-        SDL_Rect skyRect;
-        skyRect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
-        SDL_RenderFillRect(mRenderer, &skyRect);
-
         // Update physics (apply forces and solve collisions)
         mPhysics.update();
 
         // Update camera
         mCamera.update();
 
-        // Draw tiles
-        mLevel.render(mRenderer, &mCamera);
+        // Clear screen
+        mWindow.clear();
+
+        // Draw background
+        mWindow.drawTexture({0, 0}, mBackgroundTexture);
+
+        // Draw level tiles
+        for (int i = 0; i < size(mLevel.tiles); i++)
+        {
+            for (int j = 0; j < size(mLevel.tiles[i]); j++)
+            {
+                if (mLevel.tiles[i][j].getType() > -1)
+                {
+                    Coordinates pos {j * TILE_SIZE, i * TILE_SIZE};
+                    mWindow.drawTexture({pos.x - mCamera.x, pos.y}, mLevel.tiles[i][j].texture);
+                }
+            }
+        }
 
         // Render character
-        mCharacter.render(mRenderer, &mCamera);
+        mWindow.drawTexture({mCharacter.pos.x - mCamera.x, mCharacter.pos.y}, mCharacter.texture);
 
         // Update renderer
-        SDL_RenderPresent(mRenderer);
+        mWindow.update();
     }
 }

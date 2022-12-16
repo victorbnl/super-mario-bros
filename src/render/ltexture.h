@@ -20,18 +20,11 @@ class LTexture
         // Load texture from file
         bool loadFromFile(SDL_Renderer* renderer, std::string path);
 
-        // Render texture
-        void render(SDL_Renderer* renderer, int x, int y);
+        // Actual SDL texture
+        SDL_Texture* sTexture;
 
-        // Get image dimensions
-        int getWidth();
-        int getHeight();
-
-    private:
-
-        SDL_Texture* mTexture;
-        int mWidth;
-        int mHeight;
+        // Texture dimensions
+        int w, h;
 };
 
 #endif

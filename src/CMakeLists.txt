@@ -1,9 +1,10 @@
 set(
     SOURCES
     game.cpp
-    ltexture.cpp
     character.cpp
     camera.cpp
+    render/ltexture.cpp
+    render/window.cpp
     physics/physics.cpp
     physics/collisions/solve_collisions.cpp
     physics/collisions/collisions.cpp

@@ -9,18 +9,18 @@
 #include "tileset.h"
 #include "../camera.h"
 
-void Level::load(SDL_Renderer* renderer, std::string path)
+void Level::load(Window* window, std::string path)
 {
     // Parse tiles file
     std::vector<std::vector<int>> levelData = parseCSVLevel(path);
 
     // Get textures
-    mTileset.load(renderer);
+    mTileset.load(window);
 
     // For each line of tiles
     for (int i = 0; i < size(levelData); i++)
     {
-        std::vector<Tile*> line;
+        std::vector<Tile> line;
         // For each tile of line
         for (int j = 0; j < size(levelData[i]); j++)
         {
@@ -30,14 +30,14 @@ void Level::load(SDL_Renderer* renderer, std::string path)
             {
                 // Add it to the list
                 LTexture* texture = mTileset.get(tileType);
-                line.push_back(new Tile(tileType, texture));
+                line.push_back(Tile(tileType, texture));
             }
             else
             {
-                line.push_back(new Tile(tileType, NULL));
+                line.push_back(Tile(tileType, NULL));
             }
         }
-        mTiles.push_back(line);
+        tiles.push_back(line);
     }
 }
 
@@ -47,26 +47,10 @@ Tile* Level::getTileAt(int x, int y)
     int i = y / TILE_SIZE;
     int j = x / TILE_SIZE;
 
-    return mTiles[i][j];
+    return &tiles[i][j];
 }
 
 int Level::getWidth()
 {
-    return size(mTiles[0]) * TILE_SIZE;
-}
-
-void Level::render(SDL_Renderer* renderer, Camera* camera)
-{
-    // For line of tiles
-    for (int i = 0; i < size(mTiles); i++)
-    {
-        // For tile of line
-        for (int j = 0; j < size(mTiles[i]); j++)
-        {
-            // Render tile
-            int x = j * TILE_SIZE - camera->x;
-            int y = i * TILE_SIZE;
-            mTiles[i][j]->render(renderer, x, y);
-        }
-    }
+    return size(tiles[0]) * TILE_SIZE;
 }

@@ -4,7 +4,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 
-#include "ltexture.h"
+#include "render/ltexture.h"
 #include "structs.h"
 #include "camera.h"
 
@@ -16,10 +16,7 @@ class Character
         Character();
 
         // Load texture
-        bool loadTextureFromFile(SDL_Renderer* renderer, std::string path);
-
-        // Free texture
-        void freeTexture();
+        void init(LTexture* texture_);
 
         // Move character
         void moveX(int direction);
@@ -29,13 +26,13 @@ class Character
         void jump();
 
         // Get collider
-        SDL_Rect getCollider();
+        Rectangle getCollider();
 
         // Update character's collider
         void updateCollider();
 
-        // Render character
-        void render(SDL_Renderer* renderer, Camera* camera);
+        // Texture
+        LTexture* texture;
 
         // Character position
         Coordinates pos;
@@ -45,11 +42,8 @@ class Character
 
     private:
 
-        // Texture
-        LTexture mTexture;
-
         // Collider
-        SDL_Rect mCollider;
+        Rectangle mCollider;
 };
 
 #endif

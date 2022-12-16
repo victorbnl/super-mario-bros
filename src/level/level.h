@@ -13,7 +13,7 @@ class Level
     public:
 
         // Load level from file (currently hardcoded)
-        void load(SDL_Renderer* renderer, std::string path);
+        void load(Window* window, std::string path);
 
         // Get tile at coordinates (x, y)
         Tile* getTileAt(int x, int y);
@@ -21,16 +21,13 @@ class Level
         // Get level width
         int getWidth();
 
-        // Render level (render each tile)
-        void render(SDL_Renderer* renderer, Camera* camera);
+        // Level tiles
+        std::vector<std::vector<Tile>> tiles;
 
     private:
 
         // Tileset
         Tileset mTileset;
-
-        // Level tiles
-        std::vector<std::vector<Tile*>> mTiles;
 };
 
 #endif

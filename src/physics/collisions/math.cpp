@@ -1,6 +1,7 @@
 #include "math.h"
 
 #include "../../constants.h"
+#include "../../structs.h"
 
 int maxAbsValue(std::vector<int> values)
 {
@@ -24,7 +25,7 @@ int ceilCoord(int n)
     return floorCoord(n) + TILE_SIZE;
 }
 
-SidesCoords getSidesCoords(SDL_Rect collider)
+SidesCoords getSidesCoords(Rectangle collider)
 {
     SidesCoords sidesCoords;
 

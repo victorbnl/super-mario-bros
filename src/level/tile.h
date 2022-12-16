@@ -4,28 +4,25 @@
 #include <vector>
 #include <fstream>
 
-#include "../ltexture.h"
+#include "../render/ltexture.h"
 
 class Tile
 {
     public:
 
         // Constructor
-        Tile(int type, LTexture* texture);
-
-        // Render
-        void render(SDL_Renderer* renderer, int x, int y);
+        Tile(int type, LTexture* texture_);
 
         // Get tile type
         int getType();
+
+        // Texture
+        LTexture* texture;
 
     private:
 
         // Type
         int mType;
-
-        // Texture
-        LTexture* mTexture;
 };
 
 #endif

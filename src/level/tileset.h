@@ -3,14 +3,15 @@
 
 #include <array>
 
-#include "../ltexture.h"
+#include "../render/window.h"
+#include "../render/ltexture.h"
 
 class Tileset
 {
     public:
 
         // Load textures
-        void load(SDL_Renderer* renderer);
+        void load(Window* window);
 
         // Get texture by index
         LTexture* get(int i);
@@ -18,7 +19,7 @@ class Tileset
     private:
 
         // Tileset array
-        std::array<LTexture, 4> mTileset;
+        std::array<LTexture*, 4> mTileset;
 };
 
 #endif

@@ -13,7 +13,7 @@
 #include "../../level/level.h"
 #include "../../level/tile.h"
 
-std::vector<Coordinates> getCloseTilesCoords(SDL_Rect charCollider)
+std::vector<Coordinates> getCloseTilesCoords(Rectangle charCollider)
 {
     std::vector<Coordinates> tiles;
 
@@ -32,7 +32,7 @@ std::vector<Coordinates> getCloseTilesCoords(SDL_Rect charCollider)
     return tiles;
 }
 
-Vector getCollisionSolution(SDL_Rect colliderA, SDL_Rect colliderB)
+Vector getCollisionSolution(Rectangle colliderA, Rectangle colliderB)
 {
     SidesCoords a = getSidesCoords(colliderA);
     SidesCoords b = getSidesCoords(colliderB);
@@ -73,7 +73,7 @@ Vector getCollisionSolution(SDL_Rect colliderA, SDL_Rect colliderB)
     return collision;
 }
 
-Vector getLevelBordersCollisionSolution(SDL_Rect collider, Level* level, Rectangle levelBoundaries)
+Vector getLevelBordersCollisionSolution(Rectangle collider, Level* level, Rectangle levelBoundaries)
 {
     SidesCoords a = getSidesCoords(collider);
     Vector solution {0, 0};
@@ -97,7 +97,7 @@ Vector getLevelBordersCollisionSolution(SDL_Rect collider, Level* level, Rectang
     return solution;
 }
 
-void moveCharacter(Vector vector, SDL_Rect charCollider, Character* character, Level* level)
+void moveCharacter(Vector vector, Rectangle charCollider, Character* character, Level* level)
 {
     character->pos.x = std::clamp(character->pos.x + vector.x, 0, level->getWidth()-charCollider.w-10);
     character->pos.y = std::clamp(character->pos.y + vector.y, 0, SCREEN_HEIGHT-charCollider.h-10);
@@ -105,7 +105,7 @@ void moveCharacter(Vector vector, SDL_Rect charCollider, Character* character, L
 
 void solveCollisions(Character* character, Level* level, Rectangle levelBoundaries)
 {
-    SDL_Rect charCollider = character->getCollider();
+    Rectangle charCollider = character->getCollider();
 
     // Get coordinates of tiles around the player
     std::vector<Coordinates> closeTilesCoords = getCloseTilesCoords(charCollider);
@@ -127,7 +127,7 @@ void solveCollisions(Character* character, Level* level, Rectangle levelBoundari
         // If tile is a solid block
         if (closeTiles[i]->getType() > -1)
         {
-            SDL_Rect tileCollider = {
+            Rectangle tileCollider = {
                 closeTilesCoords[i].x,
                 closeTilesCoords[i].y,
                 TILE_SIZE,

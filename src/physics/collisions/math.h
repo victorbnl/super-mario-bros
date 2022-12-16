@@ -4,6 +4,8 @@
 #include <vector>
 #include <SDL2/SDL.h>
 
+#include "../../structs.h"
+
 // Get number with the greatest absolute value
 int maxAbsValue(std::vector<int> values);
 
@@ -15,6 +17,6 @@ int ceilCoord(int n);
 
 // Get sides coordinates
 struct SidesCoords {int left; int right; int top; int bottom;};
-SidesCoords getSidesCoords(SDL_Rect collider);
+SidesCoords getSidesCoords(Rectangle collider);
 
 #endif

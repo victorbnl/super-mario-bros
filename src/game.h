@@ -5,8 +5,9 @@
 #include <SDL2/SDL.h>
 
 #include "camera.h"
-#include "ltexture.h"
 #include "character.h"
+#include "render/ltexture.h"
+#include "render/window.h"
 #include "level/level.h"
 #include "physics/physics.h"
 
@@ -17,22 +18,19 @@ class Game
         // Constructor
         Game();
 
-        // Destructor
-        ~Game();
-
         // Main
         void main();
 
     private:
 
         // Window
-        SDL_Window* mWindow;
-
-        // Renderer
-        SDL_Renderer* mRenderer;
+        Window mWindow;
 
         // Camera
         Camera mCamera;
+
+        // Background
+        LTexture* mBackgroundTexture;
 
         // Tiles
         Level mLevel;

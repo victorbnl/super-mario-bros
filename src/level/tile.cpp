@@ -5,18 +5,12 @@
 #include <array>
 #include <SDL2/SDL.h>
 
-#include "../ltexture.h"
+#include "../render/ltexture.h"
 
-Tile::Tile(int type, LTexture* texture)
+Tile::Tile(int type, LTexture* texture_)
 {
     mType = type;
-    mTexture = texture;
-}
-
-void Tile::render(SDL_Renderer* renderer, int x, int y)
-{
-    if (mTexture != NULL)
-        mTexture->render(renderer, x, y);
+    texture = texture_;
 }
 
 int Tile::getType()
