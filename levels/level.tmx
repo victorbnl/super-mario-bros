@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="26" height="9" tilewidth="48" tileheight="48" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="26" height="9" tilewidth="48" tileheight="48" infinite="0" backgroundcolor="#00a9ff" nextlayerid="2" nextobjectid="1">
  <editorsettings>
-  <export target="../assets/level.csv" format="csv"/>
+  <export target="../assets/levels/level.csv" format="csv"/>
  </editorsettings>
  <tileset firstgid="1" source="tileset.tsx"/>
- <layer id="1" name="Tile Layer 1" width="26" height="9" offsetx="80.6667" offsety="68">
+ <layer id="1" name="Tile Layer 1" width="26" height="9" offsetx="0" offsety="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
