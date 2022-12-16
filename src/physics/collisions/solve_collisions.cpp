@@ -97,12 +97,6 @@ Vector getLevelBordersCollisionSolution(Rectangle collider, Level* level, Rectan
     return solution;
 }
 
-void moveCharacter(Vector vector, Rectangle charCollider, Character* character, Level* level)
-{
-    character->pos.x = std::clamp(character->pos.x + vector.x, 0, level->getWidth()-charCollider.w-10);
-    character->pos.y = std::clamp(character->pos.y + vector.y, 0, SCREEN_HEIGHT-charCollider.h-10);
-}
-
 void solveCollisions(Character* character, Level* level, Rectangle levelBoundaries)
 {
     Rectangle charCollider = character->getCollider();
