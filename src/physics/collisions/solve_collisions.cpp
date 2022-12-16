@@ -83,7 +83,7 @@ Vector getLevelBordersCollisionSolution(Rectangle collider, Level* level, Rectan
         solution.x = -a.left;
 
     // Right border
-    if (a.right > levelBoundaries.w)
+    if (a.right > levelBoundaries.w - 10)
         solution.x = a.right - levelBoundaries.w;
 
     // Top border
