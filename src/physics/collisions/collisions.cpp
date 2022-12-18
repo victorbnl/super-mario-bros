@@ -2,7 +2,7 @@
 
 #include "../../character.h"
 #include "../../level/level.h"
-#include "../../structs.h"
+#include "../../structures.h"
 #include "solve_collisions.h"
 
 void CollisionsEngine::init(Character* character, Level* level, Rectangle levelBoundaries)
@@ -12,7 +12,12 @@ void CollisionsEngine::init(Character* character, Level* level, Rectangle levelB
     mLevelBoundaries = levelBoundaries;
 }
 
-void CollisionsEngine::update()
+void CollisionsEngine::solveX()
 {
-    solveCollisions(mCharacter, mLevel, mLevelBoundaries);
+    solveCollisionsX(mCharacter, mLevel, mLevelBoundaries);
+}
+
+void CollisionsEngine::solveY()
+{
+    solveCollisionsY(mCharacter, mLevel, mLevelBoundaries);
 }

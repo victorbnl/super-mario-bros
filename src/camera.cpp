@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <SDL2/SDL.h>
 
-#include "structs.h"
+#include "structures.h"
 #include "constants.h"
 #include "character.h"
 #include "constants.h"
@@ -21,7 +21,7 @@ void Camera::init(Character* character, Rectangle levelBoundaries)
 
 void Camera::update()
 {
-    int charOnScreenPosX = mCharacter->pos.x - x;
+    int charOnScreenPosX = mCharacter->body.x - x;
 
     int moveX = 0;
 
@@ -34,7 +34,7 @@ void Camera::update()
     // If character is too much at the right
     if (charOnScreenPosX > SCREEN_WIDTH - SCREEN_PADDING_X)
     {
-        moveX = (mCharacter->pos.x) - (x + SCREEN_WIDTH - SCREEN_PADDING_X);
+        moveX = (mCharacter->body.x) - (x + SCREEN_WIDTH - SCREEN_PADDING_X);
     }
 
     // Move camera

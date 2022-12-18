@@ -3,7 +3,7 @@
 
 #include "../../character.h"
 #include "../../level/level.h"
-#include "../../structs.h"
+#include "../../structures.h"
 
 class CollisionsEngine
 {
@@ -13,7 +13,8 @@ class CollisionsEngine
         void init(Character* character, Level* level, Rectangle levelBoundaries);
 
         // Update
-        void update();
+        void solveX();
+        void solveY();
 
     private:
 

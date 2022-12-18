@@ -5,45 +5,28 @@
 #include <SDL2/SDL.h>
 
 #include "render/ltexture.h"
-#include "structs.h"
+#include "structures.h"
 #include "camera.h"
+#include "physics/rigidbody.h"
 
 class Character
 {
     public:
 
-        // Constructor
-        Character();
-
-        // Load texture
+        // Initialise
         void init(LTexture* texture_);
 
-        // Move character
-        void moveX(int direction);
-        void moveY(int direction);
-
-        // Jump
+        // Actions
+        void stand();
+        void walk(int direction);
         void jump();
 
-        // Get collider
-        Rectangle getCollider();
-
-        // Update character's collider
-        void updateCollider();
-
-        // Texture
+        // Rendering
         LTexture* texture;
 
-        // Character position
-        Coordinates pos;
-
-        // Character velocity
-        Velocity vel;
-
-    private:
-
-        // Collider
-        Rectangle mCollider;
+        // Physics
+        RigidBody body;
+        RigidBody oldBody;
 };
 
 #endif

@@ -10,6 +10,8 @@
 #include "level/level.h"
 #include "physics/physics.h"
 
+#include<unistd.h>
+
 Game::Game()
 {
     // Load background texture
@@ -23,7 +25,8 @@ Game::Game()
     mLevel.load(&mWindow, "assets/levels/level.csv");
 
     // Calculate level boundaries
-    Rectangle levelBoundaries {0, 0, mLevel.getWidth(), SCREEN_HEIGHT};
+    Rectangle levelBoundaries;
+    levelBoundaries.init(0, 0, mLevel.getWidth(), SCREEN_HEIGHT);
 
     // Initialise camera
     mCamera.init(&mCharacter, levelBoundaries);
@@ -52,17 +55,21 @@ void Game::main()
         // Get keypresses
         const Uint8* keystates = SDL_GetKeyboardState(NULL);
 
+        // Update physics (apply forces and solve collisions)
+        mPhysics.update();
+
+        mCharacter.stand();
         // Left key
         if (keystates[SDL_SCANCODE_LEFT])
-            mCharacter.moveX(-SPEED);
+            mCharacter.walk(-1);
         // Right key
         if (keystates[SDL_SCANCODE_RIGHT])
-            mCharacter.moveX(SPEED);
+            mCharacter.walk(1);
+        // Up key
         if (keystates[SDL_SCANCODE_UP])
             mCharacter.jump();
 
-        // Update physics (apply forces and solve collisions)
-        mPhysics.update();
+        // mCharacter.body.velX = +1;
 
         // Update camera
         mCamera.update();
@@ -78,7 +85,7 @@ void Game::main()
         {
             for (int j = 0; j < size(mLevel.tiles[i]); j++)
             {
-                if (mLevel.tiles[i][j].getType() > -1)
+                if (mLevel.tiles[i][j].type > -1)
                 {
                     Coordinates pos {j * TILE_SIZE, i * TILE_SIZE};
                     mWindow.drawTexture({pos.x - mCamera.x, pos.y}, mLevel.tiles[i][j].texture);
@@ -87,9 +94,19 @@ void Game::main()
         }
 
         // Render character
-        mWindow.drawTexture({mCharacter.pos.x - mCamera.x, mCharacter.pos.y}, mCharacter.texture);
+        mWindow.drawTexture(
+            {
+                (int)mCharacter.body.x - mCamera.x,
+                (int)mCharacter.body.y
+            },
+            mCharacter.texture
+        );
 
         // Update renderer
         mWindow.update();
+
+        // Slow down game for debugging purposes
+        // unsigned int second = 1000000;
+        // usleep(0.1 * second);
     }
 }

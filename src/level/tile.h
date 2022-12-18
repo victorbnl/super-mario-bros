@@ -5,24 +5,21 @@
 #include <fstream>
 
 #include "../render/ltexture.h"
+#include "../physics/rigidbody.h"
 
 class Tile
 {
     public:
 
         // Constructor
-        Tile(int type, LTexture* texture_);
-
-        // Get tile type
-        int getType();
+        Tile(int x, int y, int type_, LTexture* texture_);
 
         // Texture
+        int type;
         LTexture* texture;
 
-    private:
-
-        // Type
-        int mType;
+        // Physics
+        RigidBody body;
 };
 
 #endif

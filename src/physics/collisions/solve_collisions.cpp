@@ -1,165 +1,105 @@
 #include "solve_collisions.h"
 
-#include <iostream>
 #include <vector>
-#include <algorithm>
-#include <SDL2/SDL.h>
 
-#include "collisions.h"
-#include "math.h"
-#include "../../structs.h"
+#include "get_adjacent_tiles.h"
+#include "../../structures.h"
 #include "../../constants.h"
-#include "../../character.h"
-#include "../../level/level.h"
-#include "../../level/tile.h"
 
-std::vector<Coordinates> getCloseTilesCoords(Rectangle charCollider)
+bool areColliding(Character* character, Tile* tile)
 {
-    std::vector<Coordinates> tiles;
-
-    Coordinates tile {
-        floorCoord(charCollider.x),
-        floorCoord(charCollider.y)
-    };
-    tiles.push_back(tile);
-    tile.y = ceilCoord(charCollider.y);
-    tiles.push_back(tile);
-    tile.x = ceilCoord(charCollider.x);
-    tiles.push_back(tile);
-    tile.y = floorCoord(charCollider.y);
-    tiles.push_back(tile);
-
-    return tiles;
+    return (
+        character->body.right > tile->body.left
+        && character->body.left < tile->body.right
+        & character->body.bottom > tile->body.top
+        && character->body.top < tile->body.bottom
+    );
 }
 
-Vector getCollisionSolution(Rectangle colliderA, Rectangle colliderB)
+void solveCollisionX(Character* character, Tile* tile)
 {
-    SidesCoords a = getSidesCoords(colliderA);
-    SidesCoords b = getSidesCoords(colliderB);
+    // If tile is air
+    if (tile->type == -1)
+        return;
 
-    // Get x and y distances between objects
-    int distanceX, distanceY;
-    int directionX, directionY;
-    if (a.left <= b.left)
+    // If there is no collision
+    if (!areColliding(character, tile))
+        return;
+
+    // Character moving right
+    if (character->body.velX > 0)
     {
-        distanceX = b.left - a.right;
-        directionX = 1;
-    }
-    if (a.left > b.left)
-    {
-        distanceX = a.left - b.right;
-        directionX = -1;
-    }
-    if (a.top <= b.top)
-    {
-        distanceY = b.top - a.bottom;
-        directionY = 1;
-    }
-    if (a.top > b.top)
-    {
-        distanceY = a.top - a.bottom;
-        directionY = -1;
+        character->body.x = tile->body.left - TILE_SIZE;
     }
 
-    // No collision by default
-    Vector collision {0, 0};
-    // If there is a collision
-    if (distanceX < 0 && distanceY < 0)
+    // Character moving left
+    if (character->body.velX < 0)
     {
-        // Return it
-        collision = {distanceX * directionX, distanceY * directionY};
+        character->body.velX = 0;
+        character->body.x = tile->body.right;
     }
 
-    return collision;
+    character->body.update();
+    character->oldBody = character->body;
 }
 
-Vector getLevelBordersCollisionSolution(Rectangle collider, Level* level, Rectangle levelBoundaries)
+void solveCollisionY(Character* character, Tile* tile)
 {
-    SidesCoords a = getSidesCoords(collider);
-    Vector solution {0, 0};
+    // If tile is air
+    if (tile->type == -1)
+        return;
 
-    // Left border
-    if (a.left < 0)
-        solution.x = -a.left;
+    // If there is no collision
+    if (!areColliding(character, tile))
+        return;
 
-    // Right border
-    if (a.right > levelBoundaries.w - 10)
-        solution.x = a.right - levelBoundaries.w;
+    // Character moving down
+    if (character->body.velY > 0)
+    {
+        character->body.velY = 0;
+        character->body.y = tile->body.top - TILE_SIZE;
+    }
 
-    // Top border
-    if (a.top < 0)
-        solution.y = -a.top;
+    // Character moving up
+    if (character->body.velY < 0)
+    {
+        character->body.velY = 0;
+        character->body.y = tile->body.top;
+    }
 
-    // Bottom border
-    if (a.bottom > levelBoundaries.h - 10)
-        solution.y = levelBoundaries.h - a.bottom - 10;
-
-    return solution;
+    character->body.update();
 }
 
-void solveCollisions(Character* character, Level* level, Rectangle levelBoundaries)
+void solveCollisionsX(Character* character, Level* level, Rectangle screenBoundaries)
 {
-    Rectangle charCollider = character->getCollider();
+    // Get colliders
+    std::vector<Tile*> tiles = getAdjacentTiles(character->body, level);
 
-    // Get coordinates of tiles around the player
-    std::vector<Coordinates> closeTilesCoords = getCloseTilesCoords(charCollider);
-
-    // Get tiles
-    std::vector<Tile*> closeTiles;
-    // For each tile coordinate
-    for (int i = 0; i < size(closeTilesCoords); i++)
+    // For each adjacent tile
+    for (int i = 0; i < size(tiles); i++)
     {
-        closeTiles.push_back(level->getTileAt(closeTilesCoords[i].x, closeTilesCoords[i].y));
+        Tile* tile = tiles[i];
+
+        solveCollisionX(character, tile);
     }
 
-    std::vector<int> xMoves {0};
-    std::vector<int> yMoves {0};
+    character->body.update();
+    character->oldBody = character->body;
+}
 
-    // For each close tile
-    for (int i = 0; i < size(closeTilesCoords); i++)
+void solveCollisionsY(Character* character, Level* level, Rectangle screenBoundaries)
+{
+    // Get colliders
+    std::vector<Tile*> tiles = getAdjacentTiles(character->body, level);
+
+    // For each adjacent tile
+    for (int i = 0; i < size(tiles); i++)
     {
-        // If tile is a solid block
-        if (closeTiles[i]->getType() > -1)
-        {
-            Rectangle tileCollider = {
-                closeTilesCoords[i].x,
-                closeTilesCoords[i].y,
-                TILE_SIZE,
-                TILE_SIZE
-            };
+        Tile* tile = tiles[i];
 
-            // Get collision
-            Vector collision = getCollisionSolution(charCollider, tileCollider);
-
-            // Move character accordingly
-            if (abs(collision.x) < abs(collision.y))
-            {
-                xMoves.push_back(collision.x);
-            }
-            if (abs(collision.x) >= abs(collision.y))
-            {
-                yMoves.push_back(collision.y);
-            }
-        }
+        solveCollisionY(character, tile);
     }
 
-    // Determine greatest moves
-    int xMove = maxAbsValue(xMoves);
-    int yMove = maxAbsValue(yMoves);
-    Vector move {xMove, yMove};
-
-    // Move character
-    character->pos.x += move.x;
-    character->pos.y += move.y;
-
-    // Screen borders
-    Vector levelBordersCollisionSolution = getLevelBordersCollisionSolution(charCollider, level, levelBoundaries);
-    character->pos.x += levelBordersCollisionSolution.x;
-    character->pos.y += levelBordersCollisionSolution.y;
-
-    // Update character velocity accordingly
-    if (move.x != 0 || levelBordersCollisionSolution.x != 0)
-        character->vel.x = 0;
-    if (move.y != 0 || levelBordersCollisionSolution.y != 0)
-        character->vel.y = 0;
+    character->body.update();
+    character->oldBody = character->body;
 }

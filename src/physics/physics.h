@@ -3,7 +3,7 @@
 
 #include "../character.h"
 #include "../level/level.h"
-#include "../structs.h"
+#include "../structures.h"
 #include "collisions/collisions.h"
 
 class PhysicsEngine

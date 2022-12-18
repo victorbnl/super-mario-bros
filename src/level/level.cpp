@@ -30,11 +30,11 @@ void Level::load(Window* window, std::string path)
             {
                 // Add it to the list
                 LTexture* texture = mTileset.get(tileType);
-                line.push_back(Tile(tileType, texture));
+                line.push_back(Tile(j * TILE_SIZE, i * TILE_SIZE, tileType, texture));
             }
             else
             {
-                line.push_back(Tile(tileType, NULL));
+                line.push_back(Tile(j * TILE_SIZE, i * TILE_SIZE, tileType, NULL));
             }
         }
         tiles.push_back(line);
@@ -47,7 +47,9 @@ Tile* Level::getTileAt(int x, int y)
     int i = y / TILE_SIZE;
     int j = x / TILE_SIZE;
 
-    return &tiles[i][j];
+    Tile* tile = &tiles[i][j];
+
+    return tile;
 }
 
 int Level::getWidth()

@@ -17,16 +17,18 @@ void PhysicsEngine::init(Character* character, Level* level, Rectangle levelBoun
 void PhysicsEngine::update()
 {
     // Add gravity
-    if (mCharacter->vel.y < GRAVITY)
-        mCharacter->vel.y += GRAVITY_STEPS;
+    if (mCharacter->body.velY < GRAVITY)
+        mCharacter->body.velY += GRAVITY_STEPS;
 
-    // Apply forces
-    mCharacter->pos.x += mCharacter->vel.x * SPEED;
-    mCharacter->pos.y += mCharacter->vel.y * SPEED;
+    // Apply X velocity
+    mCharacter->body.x += mCharacter->body.velX;
+    mCharacter->body.update();
+    // Solve X collisions
+    mCollisions.solveX();
 
-    // Update character's collider
-    mCharacter->updateCollider();
-
-    // Update collisions
-    mCollisions.update();
+    // Apply Y velocity
+    mCharacter->body.y += mCharacter->body.velY;
+    mCharacter->body.update();
+    // Solve Y collisions
+    mCollisions.solveY();
 }

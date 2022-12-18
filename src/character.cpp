@@ -4,48 +4,36 @@
 #include <string>
 
 #include "constants.h"
-#include "camera.h"
-
-Character::Character()
-{
-    pos = {150, 200};
-    vel = {0, 0};
-}
 
 void Character::init(LTexture* texture_)
 {
     // Set texture
     texture = &(*texture_);
 
-    // Initialise collider
-    mCollider = {(int)pos.x, (int)pos.y, texture->w, texture->h};
+    // Initialise rigid body
+    body.init(
+        50,
+        200,
+        texture->w,
+        texture->h
+    );
 }
 
-void Character::moveX(int distance)
+void Character::stand()
 {
-    pos.x += distance;
-    mCollider.x = pos.x;
+    body.velX = 0;
+    body.update();
 }
 
-void Character::moveY(int distance)
+void Character::walk(int direction)
 {
-    pos.y += distance;
-    mCollider.y = pos.y;
+    body.velX = CHARACTER_SPEED * direction;
+    body.update();
 }
 
 void Character::jump()
 {
-    if (vel.y == 0)
-        vel.y = -JUMP_HEIGHT;
-}
-
-Rectangle Character::getCollider()
-{
-    return mCollider;
-}
-
-void Character::updateCollider()
-{
-    mCollider.x = pos.x;
-    mCollider.y = pos.y;
+    if (body.velY == 0)
+        body.velY = -JUMP_HEIGHT;
+    body.update();
 }

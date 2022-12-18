@@ -7,7 +7,7 @@
 
 #include "ltexture.h"
 #include "../constants.h"
-#include "../structs.h"
+#include "../structures.h"
 
 Window::Window()
 {
