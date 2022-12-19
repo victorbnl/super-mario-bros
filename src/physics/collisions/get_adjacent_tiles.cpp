@@ -5,7 +5,7 @@
 #include "physics/collisions/math.h"
 #include "level/level.h"
 
-std::vector<Coordinates> calculateAdjacentTilesCoords(RigidBody body)
+std::vector<Coordinates> calculateAdjacentTilesCoords(Body body)
 {
     std::vector<Coordinates> tiles;
 
@@ -31,7 +31,7 @@ std::vector<Coordinates> calculateAdjacentTilesCoords(RigidBody body)
     return tiles;
 }
 
-std::vector<Tile*> getAdjacentTiles(RigidBody body, Level* level)
+std::vector<Tile*> getAdjacentTiles(Body body, Level* level)
 {
     // Initialise the list of colliders to be returned
     std::vector<Tile*> tiles;
