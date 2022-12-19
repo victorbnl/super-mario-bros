@@ -19,10 +19,12 @@ void Level::load(Window* window, std::string path)
     for (int i = 0; i < size(levelData); i++)
     {
         std::vector<Tile> line;
+
         // For each tile of line
         for (int j = 0; j < size(levelData[i]); j++)
         {
             int tileType = levelData[i][j];
+
             // If actual tile
             if (tileType > -1)
             {
