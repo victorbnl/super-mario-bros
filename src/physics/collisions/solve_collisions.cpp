@@ -2,8 +2,11 @@
 
 #include <vector>
 
-#include "geometry.h"
 #include "constants.h"
+#include "character.h"
+#include "level/tile.h"
+#include "level/level.h"
+#include "physics/structs.h"
 #include "physics/collisions/get_adjacent_tiles.h"
 
 bool areColliding(Character* character, Tile* tile)

@@ -1,14 +1,16 @@
 #include "physics/collisions/math.h"
 
+#include <vector>
+#include <cmath>
+
 #include "constants.h"
-#include "geometry.h"
 
 int maxAbsValue(std::vector<int> values)
 {
     int max = values[0];
     for (int i = 0; i < size(values); i++)
     {
-        if (abs(values[i]) > abs(max))
+        if (std::abs(values[i]) > std::abs(max))
             max = values[i];
     }
 

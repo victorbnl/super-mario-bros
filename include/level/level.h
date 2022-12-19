@@ -2,9 +2,9 @@
 #define LEVEL_LEVEL_H
 
 #include <vector>
-#include <SDL2/SDL.h>
+#include <string>
 
-#include "camera.h"
+#include "render/window.h"
 #include "level/tile.h"
 #include "level/tileset.h"
 #include "physics/bodies.h"

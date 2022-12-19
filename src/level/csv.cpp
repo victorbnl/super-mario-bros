@@ -6,7 +6,7 @@
 
 std::vector<std::vector<int>> parseCSVLevel(std::string path)
 {
-    // Load file
+    // Open file
     std::ifstream map(path);
     if (map.fail())
     {

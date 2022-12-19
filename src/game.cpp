@@ -1,16 +1,9 @@
 #include "game.h"
 
-#include <iostream>
-#include <vector>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 
 #include "constants.h"
 #include "camera.h"
-#include "level/level.h"
-#include "physics/physics.h"
-
-#include<unistd.h>
 
 Game::Game()
 {
@@ -100,9 +93,5 @@ void Game::main()
 
         // Update renderer
         mWindow.update();
-
-        // Slow down game for debugging purposes
-        // unsigned int second = 1000000;
-        // usleep(0.1 * second);
     }
 }

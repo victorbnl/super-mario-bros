@@ -1,7 +1,6 @@
 #include "physics/collisions/collisions.h"
 
 #include "character.h"
-#include "geometry.h"
 #include "level/level.h"
 #include "physics/collisions/solve_collisions.h"
 

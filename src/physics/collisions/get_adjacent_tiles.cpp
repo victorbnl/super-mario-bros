@@ -1,7 +1,7 @@
 #include "physics/collisions/get_adjacent_tiles.h"
 
 #include "geometry.h"
-#include "constants.h"
+#include "physics/bodies.h"
 #include "physics/collisions/math.h"
 #include "level/level.h"
 

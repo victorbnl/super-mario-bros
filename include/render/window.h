@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+
 #include <SDL2/SDL.h>
 
 #include "geometry.h"

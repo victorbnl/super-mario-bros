@@ -2,7 +2,6 @@
 #define PHYSICS_COLLISIONS_COLLISIONS_H
 
 #include "character.h"
-#include "geometry.h"
 #include "level/level.h"
 
 class CollisionsEngine

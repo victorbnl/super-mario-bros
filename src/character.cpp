@@ -1,8 +1,5 @@
 #include "character.h"
 
-#include <iostream>
-#include <string>
-
 #include "constants.h"
 
 void Character::init(LTexture* texture_)

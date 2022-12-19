@@ -1,9 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <vector>
-#include <SDL2/SDL.h>
-
 #include "camera.h"
 #include "character.h"
 #include "render/ltexture.h"

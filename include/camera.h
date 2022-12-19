@@ -1,6 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include "character.h"
 #include "physics/bodies.h"
 
 class Character;

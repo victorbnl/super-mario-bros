@@ -1,5 +1,10 @@
 #include "level/tileset.h"
 
+#include <string>
+
+#include "render/ltexture.h"
+#include "render/window.h"
+
 LTexture* loadTexture(Window* window, std::string path)
 {
     LTexture* texturePtr = window->loadTexture(path);

@@ -5,6 +5,7 @@
 
 #include "character.h"
 #include "level/level.h"
+#include "physics/bodies.h"
 
 // Get adjacent tiles' colliders
 std::vector<Tile*> getAdjacentTiles(RigidBody body, Level* level);
