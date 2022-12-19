@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "constants.h"
-#include "character.h"
+#include "entities/character.h"
 #include "level/tile.h"
 #include "level/level.h"
 #include "physics/structs.h"

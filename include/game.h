@@ -2,8 +2,8 @@
 #define GAME_H
 
 #include "camera.h"
-#include "character.h"
 #include "controller.h"
+#include "entities/character.h"
 #include "render/ltexture.h"
 #include "render/window.h"
 #include "level/level.h"

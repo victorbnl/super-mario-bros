@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "character.h"
+#include "entities/character.h"
 #include "level/level.h"
 #include "physics/bodies.h"
 

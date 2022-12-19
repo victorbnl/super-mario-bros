@@ -1,7 +1,7 @@
 #include "physics/physics.h"
 
 #include "constants.h"
-#include "character.h"
+#include "entities/character.h"
 #include "level/level.h"
 
 void PhysicsEngine::init(Character* character, Level* level)

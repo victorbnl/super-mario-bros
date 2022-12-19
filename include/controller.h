@@ -1,7 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "character.h"
+#include "entities/character.h"
 
 class Controller
 {

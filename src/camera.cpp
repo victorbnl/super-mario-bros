@@ -3,7 +3,7 @@
 #include <algorithm>
 
 #include "constants.h"
-#include "character.h"
+#include "entities/character.h"
 #include "physics/bodies.h"
 
 Camera::Camera()

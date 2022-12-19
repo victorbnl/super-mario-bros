@@ -1,7 +1,7 @@
 #ifndef PHYSICS_COLLISIONS_SOLVE_COLLISIONS_H
 #define PHYSICS_COLLISIONS_SOLVE_COLLISIONS_H
 
-#include "character.h"
+#include "entities/character.h"
 #include "level/level.h"
 
 void solveCollisionsX(Character* character, Level* level);

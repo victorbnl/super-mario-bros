@@ -1,13 +1,12 @@
-#include "character.h"
+#include "entities/character.h"
 
 #include "constants.h"
+#include "entities/entity.h"
 
 void Character::init(LTexture* texture_)
 {
-    // Set texture
-    texture = &(*texture_);
+    Entity::init(texture_);
 
-    // Initialise rigid body
     body.x = 50;
     body.y = 200;
     body.collider.w = texture->w;

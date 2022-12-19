@@ -1,29 +1,21 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#ifndef ENTITIES_ENTITY_H
+#define ENTITIES_ENTITY_H
 
 #include "render/ltexture.h"
 #include "physics/bodies.h"
 
-class Character
+class Entity
 {
     public:
 
         // Initialise
         void init(LTexture* texture_);
 
-        // Actions
-        void stand();
-        void walk(int direction);
-        void jump();
-
-        // Rendering
+        // Texture
         LTexture* texture;
 
         // Physics
         RigidBody body;
-
-        // Misc
-        bool isOnGround;
 };
 
 #endif

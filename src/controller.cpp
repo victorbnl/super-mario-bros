@@ -2,7 +2,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "character.h"
+#include "entities/character.h"
 
 void Controller::init(Character* character)
 {

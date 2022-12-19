@@ -1,7 +1,7 @@
 #ifndef PHYSICS_PHYSICS_H
 #define PHYSICS_PHYSICS_H
 
-#include "character.h"
+#include "entities/character.h"
 #include "level/level.h"
 #include "collisions/collisions.h"
 
