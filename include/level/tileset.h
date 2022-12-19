@@ -3,6 +3,7 @@
 
 #include <array>
 
+#include "constants.h"
 #include "render/window.h"
 #include "render/ltexture.h"
 
@@ -19,7 +20,7 @@ class Tileset
     private:
 
         // Tileset array
-        std::array<LTexture*, 4> mTileset;
+        std::array<LTexture*, TILESET_LENGTH> mTileset;
 };
 
 #endif

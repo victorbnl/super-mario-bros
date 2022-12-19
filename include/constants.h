@@ -1,8 +1,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-// Tile size
+// Tiles
 inline const int TILE_SIZE = 48;
+inline const int TILESET_LENGTH = 4;
 
 // Window size
 inline const int SCREEN_WIDTH = 15 * TILE_SIZE;
