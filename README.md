@@ -1,5 +1,8 @@
 # Super Mario Bros
 
+![](https://img.shields.io/badge/language-C%2B%2B-00599d)
+![](https://img.shields.io/badge/librairy-SDL2-4b6379)
+
 A Super Mario Bros clone I'm creating for learning C++.
 
 ![](.readme/screenshot.png)
