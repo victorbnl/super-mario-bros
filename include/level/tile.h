@@ -4,8 +4,8 @@
 #include <vector>
 #include <fstream>
 
-#include "../render/ltexture.h"
-#include "../physics/rigidbody.h"
+#include "render/ltexture.h"
+#include "physics/rigidbody.h"
 
 class Tile
 {

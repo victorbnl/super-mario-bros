@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "../../character.h"
-#include "../../level/level.h"
+#include "character.h"
+#include "level/level.h"
 
 // Get adjacent tiles' colliders
 std::vector<Tile*> getAdjacentTiles(RigidBody body, Level* level);

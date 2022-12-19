@@ -1,9 +1,9 @@
 #ifndef PHYSICS_COLLISIONS_STRUCTS_H
 #define PHYSICS_COLLISIONS_STRUCTS_H
 
-#include "../../character.h"
-#include "../../level/level.h"
-#include "../../structures.h"
+#include "character.h"
+#include "structures.h"
+#include "level/level.h"
 
 struct Collision
 {

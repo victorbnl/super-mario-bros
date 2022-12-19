@@ -4,9 +4,9 @@
 #include <vector>
 #include <SDL2/SDL.h>
 
-#include "tile.h"
-#include "tileset.h"
-#include "../camera.h"
+#include "camera.h"
+#include "level/tile.h"
+#include "level/tileset.h"
 
 class Level
 {

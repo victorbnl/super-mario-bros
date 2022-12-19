@@ -1,13 +1,13 @@
-#include "window.h"
+#include "render/window.h"
 
 #include <iostream>
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "ltexture.h"
-#include "../constants.h"
-#include "../structures.h"
+#include "constants.h"
+#include "structures.h"
+#include "render/ltexture.h"
 
 Window::Window()
 {

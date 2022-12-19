@@ -1,8 +1,8 @@
-#include "physics.h"
+#include "physics/physics.h"
 
-#include "../character.h"
-#include "../level/level.h"
-#include "../constants.h"
+#include "character.h"
+#include "level/level.h"
+#include "constants.h"
 
 void PhysicsEngine::init(Character* character, Level* level, Rectangle levelBoundaries)
 {

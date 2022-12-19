@@ -1,10 +1,10 @@
-#include "solve_collisions.h"
+#include "physics/collisions/solve_collisions.h"
 
 #include <vector>
 
-#include "get_adjacent_tiles.h"
-#include "../../structures.h"
-#include "../../constants.h"
+#include "structures.h"
+#include "constants.h"
+#include "physics/collisions/get_adjacent_tiles.h"
 
 bool areColliding(Character* character, Tile* tile)
 {

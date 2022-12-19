@@ -1,7 +1,7 @@
-#include "math.h"
+#include "physics/collisions/math.h"
 
-#include "../../constants.h"
-#include "../../structures.h"
+#include "constants.h"
+#include "structures.h"
 
 int maxAbsValue(std::vector<int> values)
 {

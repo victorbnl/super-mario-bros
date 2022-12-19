@@ -5,8 +5,8 @@
 #include <vector>
 #include <SDL2/SDL.h>
 
-#include "../structures.h"
-#include "ltexture.h"
+#include "structures.h"
+#include "render/ltexture.h"
 
 class Window
 {

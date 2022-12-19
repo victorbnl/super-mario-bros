@@ -1,12 +1,12 @@
-#include "tile.h"
+#include "level/tile.h"
 
 #include <iostream>
 #include <vector>
 #include <array>
 #include <SDL2/SDL.h>
 
-#include "../render/ltexture.h"
-#include "../constants.h"
+#include "render/ltexture.h"
+#include "constants.h"
 
 Tile::Tile(int x, int y, int type_, LTexture* texture_)
 {

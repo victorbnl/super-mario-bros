@@ -1,14 +1,18 @@
 project(SuperMarioBros)
 cmake_minimum_required(VERSION 3.25)
 
-set(CMAKE_BUILD_TYPE Debug)
+# Source files
+file(GLOB_RECURSE SOURCES src/*.cpp)
 
-add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
+# Target
+add_executable(${CMAKE_PROJECT_NAME} ${SOURCES})
 
-add_subdirectory(src)
-target_link_libraries(${CMAKE_PROJECT_NAME} ${CMAKE_PROJECT_NAME}_lib)
+# Headers
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC include)
 
+# SDL
 set(LIBARIES SDL2 SDL2_image)
 target_link_libraries(${CMAKE_PROJECT_NAME} ${LIBARIES})
 
+# Assets
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})

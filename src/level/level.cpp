@@ -1,13 +1,13 @@
-#include "level.h"
+#include "level/level.h"
 
 #include <string>
 #include <SDL2/SDL.h>
 
-#include "../constants.h"
-#include "csv.h"
-#include "tile.h"
-#include "tileset.h"
-#include "../camera.h"
+#include "constants.h"
+#include "camera.h"
+#include "level/csv.h"
+#include "level/tile.h"
+#include "level/tileset.h"
 
 void Level::load(Window* window, std::string path)
 {

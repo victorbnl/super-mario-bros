@@ -3,8 +3,8 @@
 
 #include <array>
 
-#include "../render/window.h"
-#include "../render/ltexture.h"
+#include "render/window.h"
+#include "render/ltexture.h"
 
 class Tileset
 {

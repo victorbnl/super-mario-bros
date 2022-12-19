@@ -1,9 +1,9 @@
-#include "get_adjacent_tiles.h"
+#include "physics/collisions/get_adjacent_tiles.h"
 
-#include "math.h"
-#include "../../structures.h"
-#include "../../level/level.h"
-#include "../../constants.h"
+#include "structures.h"
+#include "constants.h"
+#include "physics/collisions/math.h"
+#include "level/level.h"
 
 std::vector<Coordinates> calculateAdjacentTilesCoords(RigidBody body)
 {
