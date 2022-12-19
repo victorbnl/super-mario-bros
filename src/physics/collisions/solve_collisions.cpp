@@ -2,17 +2,20 @@
 
 #include <vector>
 
-#include "structures.h"
+#include "geometry.h"
 #include "constants.h"
 #include "physics/collisions/get_adjacent_tiles.h"
 
 bool areColliding(Character* character, Tile* tile)
 {
+    SideCoords charSideCoords = character->body.getSideCoords();
+    SideCoords tileSideCoords = tile->body.getSideCoords();
+
     return (
-        character->body.right > tile->body.left
-        && character->body.left < tile->body.right
-        & character->body.bottom > tile->body.top
-        && character->body.top < tile->body.bottom
+        charSideCoords.right > tileSideCoords.left
+        && charSideCoords.left < tileSideCoords.right
+        & charSideCoords.bottom > tileSideCoords.top
+        && charSideCoords.top < tileSideCoords.bottom
     );
 }
 
@@ -26,20 +29,21 @@ void solveCollisionX(Character* character, Tile* tile)
     if (!areColliding(character, tile))
         return;
 
+    SideCoords tileSideCoords = tile->body.getSideCoords();
+
     // Character moving right
-    if (character->body.velX > 0)
+    if (character->body.vel.x > 0)
     {
-        character->body.x = tile->body.left - TILE_SIZE;
+        character->body.x = tileSideCoords.left - TILE_SIZE;
     }
 
     // Character moving left
-    if (character->body.velX < 0)
+    if (character->body.vel.x < 0)
     {
-        character->body.velX = 0;
-        character->body.x = tile->body.right;
+        character->body.vel.x = 0;
+        character->body.x = tileSideCoords.right;
     }
 
-    character->body.update();
     character->oldBody = character->body;
 }
 
@@ -53,24 +57,24 @@ void solveCollisionY(Character* character, Tile* tile)
     if (!areColliding(character, tile))
         return;
 
+    SideCoords tileSideCoords = tile->body.getSideCoords();
+
     // Character moving down
-    if (character->body.velY > 0)
+    if (character->body.vel.y > 0)
     {
-        character->body.velY = 0;
-        character->body.y = tile->body.top - TILE_SIZE;
+        character->body.vel.y = 0;
+        character->body.y = tileSideCoords.top - TILE_SIZE;
     }
 
     // Character moving up
-    if (character->body.velY < 0)
+    if (character->body.vel.y < 0)
     {
-        character->body.velY = 0;
-        character->body.y = tile->body.bottom;
+        character->body.vel.y = 0;
+        character->body.y = tileSideCoords.bottom;
     }
-
-    character->body.update();
 }
 
-void solveCollisionsX(Character* character, Level* level, Rectangle screenBoundaries)
+void solveCollisionsX(Character* character, Level* level)
 {
     // Get colliders
     std::vector<Tile*> tiles = getAdjacentTiles(character->body, level);
@@ -83,11 +87,11 @@ void solveCollisionsX(Character* character, Level* level, Rectangle screenBounda
         solveCollisionX(character, tile);
     }
 
-    character->body.update();
+    // Collisions are resolved; update old body
     character->oldBody = character->body;
 }
 
-void solveCollisionsY(Character* character, Level* level, Rectangle screenBoundaries)
+void solveCollisionsY(Character* character, Level* level)
 {
     // Get colliders
     std::vector<Tile*> tiles = getAdjacentTiles(character->body, level);
@@ -100,6 +104,6 @@ void solveCollisionsY(Character* character, Level* level, Rectangle screenBounda
         solveCollisionY(character, tile);
     }
 
-    character->body.update();
+    // Collisions are resolved; update old body
     character->oldBody = character->body;
 }

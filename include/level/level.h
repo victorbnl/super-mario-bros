@@ -7,6 +7,7 @@
 #include "camera.h"
 #include "level/tile.h"
 #include "level/tileset.h"
+#include "physics/bodies.h"
 
 class Level
 {
@@ -18,11 +19,11 @@ class Level
         // Get tile at coordinates (x, y)
         Tile* getTileAt(int x, int y);
 
-        // Get level width
-        int getWidth();
-
         // Level tiles
         std::vector<std::vector<Tile>> tiles;
+
+        // Physics body (for collisions with level boundaries)
+        Body body;
 
     private:
 

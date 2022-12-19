@@ -1,23 +1,22 @@
 #include "physics/collisions/collisions.h"
 
 #include "character.h"
+#include "geometry.h"
 #include "level/level.h"
-#include "structures.h"
 #include "physics/collisions/solve_collisions.h"
 
-void CollisionsEngine::init(Character* character, Level* level, Rectangle levelBoundaries)
+void CollisionsEngine::init(Character* character, Level* level)
 {
     mCharacter = character;
     mLevel = level;
-    mLevelBoundaries = levelBoundaries;
 }
 
 void CollisionsEngine::solveX()
 {
-    solveCollisionsX(mCharacter, mLevel, mLevelBoundaries);
+    solveCollisionsX(mCharacter, mLevel);
 }
 
 void CollisionsEngine::solveY()
 {
-    solveCollisionsY(mCharacter, mLevel, mLevelBoundaries);
+    solveCollisionsY(mCharacter, mLevel);
 }

@@ -4,7 +4,7 @@
 #include <vector>
 #include <SDL2/SDL.h>
 
-#include "../../structures.h"
+#include "geometry.h"
 
 // Get number with the greatest absolute value
 int maxAbsValue(std::vector<int> values);

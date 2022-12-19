@@ -4,31 +4,29 @@
 #include "level/level.h"
 #include "constants.h"
 
-void PhysicsEngine::init(Character* character, Level* level, Rectangle levelBoundaries)
+void PhysicsEngine::init(Character* character, Level* level)
 {
     // Initialise variables
     mCharacter = character;
     mLevel = level;
 
     // Initialise collisions engine
-    mCollisions.init(character, level, levelBoundaries);
+    mCollisions.init(character, level);
 }
 
 void PhysicsEngine::update()
 {
     // Add gravity
-    if (mCharacter->body.velY < GRAVITY)
-        mCharacter->body.velY += GRAVITY_STEPS;
+    if (mCharacter->body.vel.y < GRAVITY)
+        mCharacter->body.vel.y += GRAVITY_STEPS;
 
     // Apply X velocity
-    mCharacter->body.x += mCharacter->body.velX;
-    mCharacter->body.update();
+    mCharacter->body.x += mCharacter->body.vel.x;
     // Solve X collisions
     mCollisions.solveX();
 
     // Apply Y velocity
-    mCharacter->body.y += mCharacter->body.velY;
-    mCharacter->body.update();
+    mCharacter->body.y += mCharacter->body.vel.y;
     // Solve Y collisions
     mCollisions.solveY();
 }

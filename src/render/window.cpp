@@ -6,7 +6,6 @@
 #include <SDL2/SDL_image.h>
 
 #include "constants.h"
-#include "structures.h"
 #include "render/ltexture.h"
 
 Window::Window()

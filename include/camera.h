@@ -1,9 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <SDL2/SDL.h>
-
-#include "structures.h"
+#include "physics/bodies.h"
 
 class Character;
 
@@ -13,7 +11,7 @@ class Camera
 
         Camera();
 
-        void init(Character* character, Rectangle levelBoundaries);
+        void init(Character* character, Body levelBody);
 
         void update();
 
@@ -22,7 +20,7 @@ class Camera
     private:
 
         Character* mCharacter;
-        Rectangle mLevelBoundaries;
+        Body mLevelBody;
 };
 
 #endif

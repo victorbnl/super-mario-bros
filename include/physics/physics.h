@@ -2,7 +2,7 @@
 #define PHYSICS_PHYSICS_H
 
 #include "character.h"
-#include "structures.h"
+#include "geometry.h"
 #include "level/level.h"
 #include "collisions/collisions.h"
 
@@ -11,7 +11,7 @@ class PhysicsEngine
     public:
 
         // Initialisation
-        void init(Character* character, Level* level, Rectangle levelBoundaries);
+        void init(Character* character, Level* level);
 
         // Update
         void update();

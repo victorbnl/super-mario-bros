@@ -1,16 +1,16 @@
 #ifndef PHYSICS_COLLISIONS_COLLISIONS_H
 #define PHYSICS_COLLISIONS_COLLISIONS_H
 
-#include "../../character.h"
-#include "../../level/level.h"
-#include "../../structures.h"
+#include "character.h"
+#include "geometry.h"
+#include "level/level.h"
 
 class CollisionsEngine
 {
     public:
 
         // Initialisation
-        void init(Character* character, Level* level, Rectangle levelBoundaries);
+        void init(Character* character, Level* level);
 
         // Update
         void solveX();
@@ -20,7 +20,6 @@ class CollisionsEngine
 
         Character* mCharacter;
         Level* mLevel;
-        Rectangle mLevelBoundaries;
 };
 
 #endif

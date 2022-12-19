@@ -5,7 +5,7 @@
 #include <fstream>
 
 #include "render/ltexture.h"
-#include "physics/rigidbody.h"
+#include "physics/bodies.h"
 
 class Tile
 {

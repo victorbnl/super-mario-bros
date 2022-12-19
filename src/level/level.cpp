@@ -39,6 +39,12 @@ void Level::load(Window* window, std::string path)
         }
         tiles.push_back(line);
     }
+
+    // Define body
+    body.collider.w = size(tiles[0]) * TILE_SIZE;
+    body.collider.h = SCREEN_HEIGHT;
+    body.x = 0;
+    body.y = 0;
 }
 
 Tile* Level::getTileAt(int x, int y)
@@ -50,9 +56,4 @@ Tile* Level::getTileAt(int x, int y)
     Tile* tile = &tiles[i][j];
 
     return tile;
-}
-
-int Level::getWidth()
-{
-    return size(tiles[0]) * TILE_SIZE;
 }

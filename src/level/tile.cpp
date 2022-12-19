@@ -15,10 +15,8 @@ Tile::Tile(int x, int y, int type_, LTexture* texture_)
     texture = texture_;
 
     // Initialise rigid body
-    body.init(
-        x,
-        y,
-        TILE_SIZE,
-        TILE_SIZE
-    );
+    body.x = x;
+    body.y = y;
+    body.collider.w = TILE_SIZE;
+    body.collider.h = TILE_SIZE;
 }

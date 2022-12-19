@@ -1,7 +1,7 @@
 #include "physics/collisions/math.h"
 
 #include "constants.h"
-#include "structures.h"
+#include "geometry.h"
 
 int maxAbsValue(std::vector<int> values)
 {
@@ -23,16 +23,4 @@ int floorCoord(int n)
 int ceilCoord(int n)
 {
     return floorCoord(n) + TILE_SIZE;
-}
-
-SidesCoords getSidesCoords(Rectangle collider)
-{
-    SidesCoords sidesCoords;
-
-    sidesCoords.top = collider.y;
-    sidesCoords.bottom = collider.y + collider.h;
-    sidesCoords.left = collider.x;
-    sidesCoords.right = collider.x + collider.w;
-
-    return sidesCoords;
 }

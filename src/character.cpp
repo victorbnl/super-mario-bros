@@ -11,29 +11,24 @@ void Character::init(LTexture* texture_)
     texture = &(*texture_);
 
     // Initialise rigid body
-    body.init(
-        50,
-        200,
-        texture->w,
-        texture->h
-    );
+    body.x = 50;
+    body.y = 200;
+    body.collider.w = texture->w;
+    body.collider.h = texture->h;
 }
 
 void Character::stand()
 {
-    body.velX = 0;
-    body.update();
+    body.vel.x = 0;
 }
 
 void Character::walk(int direction)
 {
-    body.velX = CHARACTER_SPEED * direction;
-    body.update();
+    body.vel.x = CHARACTER_SPEED * direction;
 }
 
 void Character::jump()
 {
-    if (body.velY == 0)
-        body.velY = -JUMP_HEIGHT;
-    body.update();
+    if (body.vel.y == 0)
+        body.vel.y = -JUMP_HEIGHT;
 }

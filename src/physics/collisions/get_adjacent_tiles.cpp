@@ -1,6 +1,6 @@
 #include "physics/collisions/get_adjacent_tiles.h"
 
-#include "structures.h"
+#include "geometry.h"
 #include "constants.h"
 #include "physics/collisions/math.h"
 #include "level/level.h"

@@ -24,15 +24,11 @@ Game::Game()
     // Load level
     mLevel.load(&mWindow, "assets/levels/level.csv");
 
-    // Calculate level boundaries
-    Rectangle levelBoundaries;
-    levelBoundaries.init(0, 0, mLevel.getWidth(), SCREEN_HEIGHT);
-
     // Initialise camera
-    mCamera.init(&mCharacter, levelBoundaries);
+    mCamera.init(&mCharacter, mLevel.body);
 
     // Initialise physics engine
-    mPhysics.init(&mCharacter, &mLevel, levelBoundaries);
+    mPhysics.init(&mCharacter, &mLevel);
 }
 
 void Game::main()

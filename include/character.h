@@ -5,9 +5,9 @@
 #include <SDL2/SDL.h>
 
 #include "render/ltexture.h"
-#include "structures.h"
+#include "geometry.h"
 #include "camera.h"
-#include "physics/rigidbody.h"
+#include "physics/bodies.h"
 
 class Character
 {
