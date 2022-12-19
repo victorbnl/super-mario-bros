@@ -2,11 +2,9 @@
 #define GAME_H
 
 #include "camera.h"
+#include "world.h"
 #include "controller.h"
-#include "entities/character.h"
-#include "render/ltexture.h"
 #include "render/window.h"
-#include "level/level.h"
 #include "physics/physics.h"
 
 class Game
@@ -24,20 +22,14 @@ class Game
         // Window
         Window mWindow;
 
-        // Controller (handle input)
-        Controller mController;
-
         // Camera
         Camera mCamera;
 
-        // Background
-        LTexture* mBackgroundTexture;
+        // Controller (handle input)
+        Controller mController;
 
-        // Tiles
-        Level mLevel;
-
-        // Character
-        Character mCharacter;
+        // World
+        World mWorld;
 
         // Physics engine
         PhysicsEngine mPhysics;

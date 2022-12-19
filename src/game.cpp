@@ -6,24 +6,17 @@
 
 Game::Game()
 {
-    // Initialise controller
-    mController.init(&mCharacter);
+    // Initialise controller (handle input)
+    mController.init(&mWorld.character);
 
-    // Load background texture
-    mBackgroundTexture = mWindow.loadTexture("assets/textures/sky.png");
-
-    // Load character texture
-    LTexture* characterTexture = mWindow.loadTexture("assets/textures/character.png");
-    mCharacter.init(characterTexture);
-
-    // Load level
-    mLevel.load(&mWindow, "assets/levels/level.csv");
+    // Initialise world (level & entities)
+    mWorld.init(&mWindow);
 
     // Initialise camera
-    mCamera.init(&mCharacter, mLevel.body);
+    mCamera.init(&mWorld.character, mWorld.level.body);
 
     // Initialise physics engine
-    mPhysics.init(&mCharacter, &mLevel);
+    mPhysics.init(&mWorld.character, &mWorld.level);
 }
 
 void Game::main()
@@ -37,7 +30,7 @@ void Game::main()
 
         // Set character's X velocity to 0
         // so that it stops walking when releasing arrow keys
-        mCharacter.stand();
+        mWorld.character.stand();
 
         // Handle input
         mController.update(&quit);
@@ -45,35 +38,7 @@ void Game::main()
         // Update camera
         mCamera.update();
 
-        // Clear screen
-        mWindow.clear();
-
-        // Draw background
-        mWindow.drawTexture({0, 0}, mBackgroundTexture);
-
-        // Draw level tiles
-        for (int i = 0; i < size(mLevel.tiles); i++)
-        {
-            for (int j = 0; j < size(mLevel.tiles[i]); j++)
-            {
-                if (mLevel.tiles[i][j].type > -1)
-                {
-                    Coordinates pos {j * TILE_SIZE, i * TILE_SIZE};
-                    mWindow.drawTexture({pos.x - mCamera.x, pos.y}, mLevel.tiles[i][j].texture);
-                }
-            }
-        }
-
-        // Render character
-        mWindow.drawTexture(
-            {
-                (int)mCharacter.body.x - mCamera.x,
-                (int)mCharacter.body.y
-            },
-            mCharacter.texture
-        );
-
-        // Update renderer
-        mWindow.update();
+        // Render
+        mWorld.render(&mWindow, mCamera.x);
     }
 }
