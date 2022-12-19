@@ -1,12 +1,14 @@
 #include "game.h"
 
-#include <SDL2/SDL.h>
-
 #include "constants.h"
-#include "camera.h"
+#include "geometry.h"
+#include "render/ltexture.h"
 
 Game::Game()
 {
+    // Initialise controller
+    mController.init(&mCharacter);
+
     // Load background texture
     mBackgroundTexture = mWindow.loadTexture("assets/textures/sky.png");
 
@@ -27,38 +29,18 @@ Game::Game()
 void Game::main()
 {
     // Main loop
-    SDL_Event e;
     bool quit = false;
     while (quit == false)
     {
-        // Event handlers
-        while (SDL_PollEvent( &e ))
-        {
-            // Quit game
-            if (e.type == SDL_QUIT)
-            {
-                quit = true;
-            }
-        }
-
-        // Get keypresses
-        const Uint8* keystates = SDL_GetKeyboardState(NULL);
-
         // Update physics (apply forces and solve collisions)
         mPhysics.update();
 
+        // Set character's X velocity to 0
+        // so that it stops walking when releasing arrow keys
         mCharacter.stand();
-        // Left key
-        if (keystates[SDL_SCANCODE_LEFT])
-            mCharacter.walk(-1);
-        // Right key
-        if (keystates[SDL_SCANCODE_RIGHT])
-            mCharacter.walk(1);
-        // Up key
-        if (keystates[SDL_SCANCODE_UP])
-            mCharacter.jump();
 
-        // mCharacter.body.velX = +1;
+        // Handle input
+        mController.update(&quit);
 
         // Update camera
         mCamera.update();

@@ -3,6 +3,7 @@
 
 #include "camera.h"
 #include "character.h"
+#include "controller.h"
 #include "render/ltexture.h"
 #include "render/window.h"
 #include "level/level.h"
@@ -22,6 +23,9 @@ class Game
 
         // Window
         Window mWindow;
+
+        // Controller (handle input)
+        Controller mController;
 
         // Camera
         Camera mCamera;
