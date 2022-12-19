@@ -64,7 +64,7 @@ void solveCollisionY(Character* character, Tile* tile)
     if (character->body.velY < 0)
     {
         character->body.velY = 0;
-        character->body.y = tile->body.top;
+        character->body.y = tile->body.bottom;
     }
 
     character->body.update();
