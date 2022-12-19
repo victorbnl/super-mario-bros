@@ -67,6 +67,7 @@ void solveCollisionY(Character* character, Tile* tile)
     {
         character->body.vel.y = 0;
         character->body.y = tileSideCoords.top - TILE_SIZE;
+        character->isOnGround = true;
     }
 
     // Character moving up

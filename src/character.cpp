@@ -26,6 +26,7 @@ void Character::walk(int direction)
 
 void Character::jump()
 {
-    if (body.vel.y == 0)
+    if (isOnGround)
         body.vel.y = -JUMP_HEIGHT;
+        isOnGround = false;
 }
