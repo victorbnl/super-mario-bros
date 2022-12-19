@@ -17,7 +17,7 @@ bool areColliding(Character* character, Tile* tile)
     return (
         charSideCoords.right > tileSideCoords.left
         && charSideCoords.left < tileSideCoords.right
-        & charSideCoords.bottom > tileSideCoords.top
+        && charSideCoords.bottom > tileSideCoords.top
         && charSideCoords.top < tileSideCoords.bottom
     );
 }
