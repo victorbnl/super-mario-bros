@@ -21,7 +21,6 @@ class Character
 
         // Physics
         RigidBody body;
-        RigidBody oldBody;
 
         // Misc
         bool isOnGround;

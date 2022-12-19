@@ -46,8 +46,6 @@ void solveCollisionX(Character* character, Tile* tile)
         character->body.vel.x = 0;
         character->body.x = tileSideCoords.right;
     }
-
-    character->oldBody = character->body;
 }
 
 void solveCollisionY(Character* character, Tile* tile)
@@ -90,9 +88,6 @@ void solveCollisionsX(Character* character, Level* level)
 
         solveCollisionX(character, tile);
     }
-
-    // Collisions are resolved; update old body
-    character->oldBody = character->body;
 }
 
 void solveCollisionsY(Character* character, Level* level)
@@ -107,7 +102,4 @@ void solveCollisionsY(Character* character, Level* level)
 
         solveCollisionY(character, tile);
     }
-
-    // Collisions are resolved; update old body
-    character->oldBody = character->body;
 }
