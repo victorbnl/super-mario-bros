@@ -1,9 +1,6 @@
 #ifndef LEVEL_TILE_H
 #define LEVEL_TILE_H
 
-#include <vector>
-#include <fstream>
-
 #include "render/ltexture.h"
 #include "physics/bodies.h"
 
