@@ -6,6 +6,8 @@ Body::Body()
 {
     x = 0;
     y = 0;
+    collider.w = 0;
+    collider.h = 0;
 }
 
 SideCoords Body::getSideCoords()
@@ -18,4 +20,10 @@ SideCoords Body::getSideCoords()
     sideCoords.bottom = y + collider.h;
 
     return sideCoords;
+}
+
+RigidBody::RigidBody()
+{
+    vel.x = 0;
+    vel.y = 0;
 }

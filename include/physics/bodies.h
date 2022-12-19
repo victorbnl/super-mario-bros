@@ -28,6 +28,9 @@ class RigidBody : public Body
 {
     public:
 
+        // Constructor
+        RigidBody();
+
         // Velocity
         Vector vel;
 };
