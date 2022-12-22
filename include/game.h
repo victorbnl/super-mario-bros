@@ -6,6 +6,7 @@
 #include "controller.h"
 #include "render/window.h"
 #include "physics/physics.h"
+#include "collisions/collisions.h"
 
 class Game
 {
@@ -33,6 +34,9 @@ class Game
 
         // Physics engine
         PhysicsEngine mPhysics;
+
+        // Collisions engine
+        CollisionsEngine mCollisions;
 };
 
 #endif

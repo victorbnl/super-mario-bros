@@ -1,4 +1,4 @@
-#include "physics/collisions/collisions.h"
+#include "collisions/collisions.h"
 
 #include <vector>
 #include <cmath>
@@ -6,7 +6,7 @@
 
 #include "entities/character.h"
 #include "level/level.h"
-#include "physics/collisions/get_collisions.h"
+#include "collisions/get_collisions.h"
 
 void CollisionsEngine::init(Character* character, Level* level)
 {

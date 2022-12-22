@@ -3,7 +3,6 @@
 
 #include "entities/character.h"
 #include "level/level.h"
-#include "collisions/collisions.h"
 
 class PhysicsEngine
 {
@@ -19,7 +18,6 @@ class PhysicsEngine
 
         Character* mCharacter;
         Level* mLevel;
-        CollisionsEngine mCollisions;
 };
 
 #endif

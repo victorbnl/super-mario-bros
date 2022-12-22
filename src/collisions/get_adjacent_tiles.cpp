@@ -1,8 +1,8 @@
-#include "physics/collisions/get_adjacent_tiles.h"
+#include "collisions/get_adjacent_tiles.h"
 
 #include "geometry.h"
 #include "physics/bodies.h"
-#include "physics/collisions/math.h"
+#include "collisions/math.h"
 #include "level/level.h"
 
 std::vector<Coordinates> calculateAdjacentTilesCoords(Body body)

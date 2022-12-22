@@ -17,6 +17,9 @@ Game::Game()
 
     // Initialise physics engine
     mPhysics.init(&mWorld.character, &mWorld.level);
+
+    // Initialise collisions engine
+    mCollisions.init(&mWorld.character, &mWorld.level);
 }
 
 void Game::main()
@@ -25,8 +28,11 @@ void Game::main()
     bool quit = false;
     while (quit == false)
     {
-        // Update physics (apply forces and solve collisions)
+        // Update physics (apply forces)
         mPhysics.update();
+
+        // Solve collisions
+        mCollisions.solve();
 
         // Set character's X velocity to 0
         // so that it stops walking when releasing arrow keys

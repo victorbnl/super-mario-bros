@@ -9,9 +9,6 @@ void PhysicsEngine::init(Character* character, Level* level)
     // Initialise variables
     mCharacter = character;
     mLevel = level;
-
-    // Initialise collisions engine
-    mCollisions.init(character, level);
 }
 
 void PhysicsEngine::update()
@@ -23,7 +20,4 @@ void PhysicsEngine::update()
     // Apply X velocity
     mCharacter->body.x += mCharacter->body.vel.x;
     mCharacter->body.y += mCharacter->body.vel.y;
-
-    // Solve collisions
-    mCollisions.solve();
 }

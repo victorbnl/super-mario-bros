@@ -1,4 +1,4 @@
-#include "physics/collisions/get_collisions.h"
+#include "collisions/get_collisions.h"
 
 #include <vector>
 #include <cmath>
@@ -10,7 +10,7 @@
 #include "level/level.h"
 #include "physics/structs.h"
 #include "physics/bodies.h"
-#include "physics/collisions/get_adjacent_tiles.h"
+#include "collisions/get_adjacent_tiles.h"
 
 bool areColliding(Body* body, Tile* tile)
 {
