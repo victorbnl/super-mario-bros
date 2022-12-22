@@ -42,9 +42,9 @@ Window::Window()
 Window::~Window()
 {
     // Free all textures
-    for (int i = 0; i < size(mTextures); i++)
+    for (LTexture* texture : mTextures)
     {
-        mTextures[i]->free();
+        texture->free();
     }
 
     // Destroy SDL entities

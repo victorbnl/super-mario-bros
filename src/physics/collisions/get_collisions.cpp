@@ -98,10 +98,10 @@ std::vector<Collision> getCollisions(Entity* entity, Level* level)
     std::vector<Tile*> adjacentTiles = getAdjacentTiles(entity->body, level);
 
     // For each of them
-    for (int i = 0; i < size(adjacentTiles); i++)
+    for (Tile* tile : adjacentTiles)
     {
         // Get the collision
-        Collision collision = getCollision(entity, adjacentTiles[i]);
+        Collision collision = getCollision(entity, tile);
 
         // Add it if not empty
         if (collision.collidingArea > 0)

@@ -40,10 +40,10 @@ std::vector<Tile*> getAdjacentTiles(Body body, Level* level)
     std::vector<Coordinates> tilesCoords = calculateAdjacentTilesCoords(body);
 
     // For each adjacent tile
-    for (int i = 0; i < size(tilesCoords); i++)
+    for (Coordinates tileCoords : tilesCoords)
     {
         // Return a pointer to the Tile object
-        tiles.push_back(level->getTileAt(tilesCoords[i].x, tilesCoords[i].y));
+        tiles.push_back(level->getTileAt(tileCoords.x, tileCoords.y));
     }
 
     return tiles;

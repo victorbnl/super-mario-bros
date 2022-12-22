@@ -8,10 +8,10 @@
 int maxAbsValue(std::vector<int> values)
 {
     int max = values[0];
-    for (int i = 0; i < size(values); i++)
+    for (int value : values)
     {
-        if (std::abs(values[i]) > std::abs(max))
-            max = values[i];
+        if (std::abs(value) > std::abs(max))
+            max = value;
     }
 
     return max;
