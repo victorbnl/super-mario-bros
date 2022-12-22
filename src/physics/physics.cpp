@@ -22,11 +22,8 @@ void PhysicsEngine::update()
 
     // Apply X velocity
     mCharacter->body.x += mCharacter->body.vel.x;
-    // Solve X collisions
-    mCollisions.solveX();
-
-    // Apply Y velocity
     mCharacter->body.y += mCharacter->body.vel.y;
-    // Solve Y collisions
-    mCollisions.solveY();
+
+    // Solve collisions
+    mCollisions.solve();
 }

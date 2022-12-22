@@ -12,8 +12,7 @@ class CollisionsEngine
         void init(Character* character, Level* level);
 
         // Update
-        void solveX();
-        void solveY();
+        void solve();
 
     private:
 
