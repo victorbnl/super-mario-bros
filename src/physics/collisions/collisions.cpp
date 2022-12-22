@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
 #include "entities/character.h"
 #include "level/level.h"
@@ -15,8 +16,8 @@ void CollisionsEngine::init(Character* character, Level* level)
 
 void CollisionsEngine::solve()
 {
+    // Solve collisions with tiles
     std::vector<Collision> collisions = getCollisions(mCharacter, mLevel);
-
     while (collisions.size() > 0)
     {
         Vector move {0, 0};

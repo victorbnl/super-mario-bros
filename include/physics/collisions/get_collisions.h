@@ -10,7 +10,6 @@
 struct Collision
 {
     Entity* entity;
-    Tile* tile;
     Vector solution;
     int collidingArea;
 };

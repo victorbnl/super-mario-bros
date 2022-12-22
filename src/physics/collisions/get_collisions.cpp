@@ -30,7 +30,6 @@ Collision getCollision(Entity* entity, Tile* tile)
     // Define collision
     Collision collision;
     collision.entity = entity;
-    collision.tile = tile;
     collision.solution = {0, 0};
     collision.collidingArea = 0;
 
@@ -90,9 +89,43 @@ std::vector<Collision> sortByCollidingArea(std::vector<Collision> collisions)
     return sorted;
 }
 
+Collision getLevelBoundariesCollision(Entity* entity, Level* level)
+{
+    // Define collision
+    Collision collision;
+    collision.entity = entity;
+    collision.solution = {0, 0};
+    collision.collidingArea = 0;
+
+    SideCoords entitySideCoords = entity->body.getSideCoords();
+    SideCoords levelSideCoords = level->body.getSideCoords();
+
+    // If entity is outside at the left
+    if (entitySideCoords.left < levelSideCoords.left)
+        collision.solution.x = levelSideCoords.left - entitySideCoords.left;
+
+    // If entity is outside at the right
+    if (entitySideCoords.right > levelSideCoords.right)
+        collision.solution.x = levelSideCoords.right - entitySideCoords.right;
+
+    // If entity is outside at the bottom
+    if (entitySideCoords.bottom > levelSideCoords.bottom)
+        collision.solution.y = levelSideCoords.bottom - entitySideCoords.bottom;
+
+    collision.collidingArea =
+        std::abs(collision.solution.x) * TILE_SIZE
+        + std::abs(collision.solution.y) * TILE_SIZE;
+
+    return collision;
+}
+
 std::vector<Collision> getCollisions(Entity* entity, Level* level)
 {
     std::vector<Collision> collisions;
+
+    Collision levelBoundariesCollision = getLevelBoundariesCollision(entity, level);
+    if (levelBoundariesCollision.collidingArea > 0)
+        collisions.push_back(levelBoundariesCollision);
 
     // Get nearby tiles
     std::vector<Tile*> adjacentTiles = getAdjacentTiles(entity->body, level);
