@@ -1,0 +1,39 @@
+name: build
+
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Install build tools
+        shell: bash
+        run: |
+          apt-get -y update
+          apt-get -y upgrade
+          apt-get -y install python3-pip ninja-build
+          pip install cmake
+
+      - name: Install dependencies
+        shell: bash
+        run: apt-get -y install libsdl2-dev libsdl2-image-dev
+
+      - name: Configure
+        shell: bash
+        run: cmake -B build -G Ninja
+
+      - name: Build
+        shell: bash
+        run: ninja -C build
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: supermariobros-linux-64
+          path: build/bin/
