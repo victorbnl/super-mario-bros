@@ -11,12 +11,12 @@ Window::Window()
 {
     // Initialise SDL
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-        std::cout << "Failed to initialise SDL" << std::endl;
+        std::cout << "Failed to initialise SDL: " << SDL_GetError() << std::endl;
 
     // Initialise PNG image loader
     int imgFlags = IMG_INIT_PNG;
     if (!(IMG_Init(imgFlags) & imgFlags))
-        std::cout << "Failed to initialise PNG image loader" << std::endl;
+        std::cout << "Failed to initialise IMG loader: " << IMG_GetError() << std::endl;
 
     // Create a window
     mWindow = SDL_CreateWindow(
