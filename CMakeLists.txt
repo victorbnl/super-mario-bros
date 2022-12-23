@@ -19,3 +19,9 @@ target_link_libraries(${CMAKE_PROJECT_NAME} ${LIBARIES})
 
 # Assets
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
+# Build level
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/assets/levels)
+execute_process(
+    COMMAND tiled ${CMAKE_CURRENT_SOURCE_DIR}/levels/level.tmx --export-map ${CMAKE_BINARY_DIR}/assets/levels/level.csv
+)
