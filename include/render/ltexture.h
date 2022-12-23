@@ -19,7 +19,7 @@ class LTexture
         void free();
 
         // Load texture from file
-        bool loadFromFile(SDL_Renderer* renderer, std::string path);
+        void loadFromFile(SDL_Renderer* renderer, std::string path);
 
         // Actual SDL texture
         SDL_Texture* sTexture;

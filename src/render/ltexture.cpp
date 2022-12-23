@@ -22,7 +22,7 @@ void LTexture::free()
         SDL_DestroyTexture(sTexture);
 }
 
-bool LTexture::loadFromFile(SDL_Renderer* renderer, std::string path)
+void LTexture::loadFromFile(SDL_Renderer* renderer, std::string path)
 {
     // Load image into a surface
     SDL_Surface* surface = IMG_Load(path.c_str());
