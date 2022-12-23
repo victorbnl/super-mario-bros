@@ -3,19 +3,16 @@
 
 #include "level/level.h"
 #include "entities/character.h"
-#include "render/ltexture.h"
-#include "render/window.h"
 
 class World
 {
     public:
 
         // Methods
-        void init(Window* window);
-        void render(Window* window, int cameraX);
+        World();
 
         // Attributes
-        LTexture* backgroundTexture;
+        int backgroundSprite;
         Level level;
         Character character;
 };

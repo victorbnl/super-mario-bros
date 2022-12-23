@@ -2,15 +2,11 @@
 
 #include "constants.h"
 #include "geometry.h"
-#include "render/ltexture.h"
 
 Game::Game()
 {
     // Initialise controller (handle input)
     mController.init(&mWorld.character);
-
-    // Initialise world (level & entities)
-    mWorld.init(&mWindow);
 
     // Initialise camera
     mCamera.init(&mWorld.character, mWorld.level.body);
@@ -45,6 +41,6 @@ void Game::main()
         mCamera.update();
 
         // Render
-        mWorld.render(&mWindow, mCamera.x);
+        mWindow.renderWorld(&mWorld, mCamera.x);
     }
 }

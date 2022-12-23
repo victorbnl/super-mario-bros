@@ -3,14 +3,16 @@
 #include "constants.h"
 #include "entities/entity.h"
 
-void Character::init(LTexture* texture_)
+Character::Character()
 {
-    Entity::init(texture_);
-
+    // Body properties
     body.x = 50;
     body.y = 200;
-    body.collider.w = texture->w;
-    body.collider.h = texture->h;
+    body.collider.w = TILE_SIZE;
+    body.collider.h = TILE_SIZE;
+
+    // Texture
+    sprite = SPRITES::CHARACTER;
 }
 
 void Character::stand()

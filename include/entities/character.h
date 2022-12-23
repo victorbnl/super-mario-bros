@@ -2,13 +2,14 @@
 #define ENTITIES_CHARACTER_H
 
 #include "entities/entity.h"
+#include "spritesheet/sprite.h"
 
 class Character : public Entity
 {
     public:
 
-        // Initialisation
-        void init(LTexture* texture_);
+        // Constructor
+        Character();
 
         // Actions
         void stand();

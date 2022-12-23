@@ -34,7 +34,7 @@ Collision getCollision(Entity* entity, Tile* tile)
     collision.collidingArea = 0;
 
     // If the tile is air
-    if (tile->type == -1)
+    if (tile->sprite == -1)
         return collision;
 
     // If they don't collide

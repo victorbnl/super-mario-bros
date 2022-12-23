@@ -4,9 +4,7 @@
 #include <vector>
 #include <string>
 
-#include "render/window.h"
 #include "level/tile.h"
-#include "level/tileset.h"
 #include "physics/bodies.h"
 
 class Level
@@ -14,7 +12,7 @@ class Level
     public:
 
         // Load level from file (currently hardcoded)
-        void load(Window* window, std::string path);
+        void load(std::string path);
 
         // Get tile at coordinates (x, y)
         Tile* getTileAt(int x, int y);
@@ -24,11 +22,6 @@ class Level
 
         // Physics body (for collisions with level boundaries)
         Body body;
-
-    private:
-
-        // Tileset
-        Tileset mTileset;
 };
 
 #endif

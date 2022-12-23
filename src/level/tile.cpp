@@ -3,17 +3,15 @@
 #include <vector>
 
 #include "constants.h"
-#include "render/ltexture.h"
 
-Tile::Tile(int x, int y, int type_, LTexture* texture_)
+Tile::Tile(int x, int y, int sprite_)
 {
-    // Initialise texture
-    type = type_;
-    texture = texture_;
-
     // Initialise rigid body
     body.x = x;
     body.y = y;
     body.collider.w = TILE_SIZE;
     body.collider.h = TILE_SIZE;
+
+    // Initialise texture
+    sprite = sprite_;
 }

@@ -5,15 +5,11 @@
 #include "constants.h"
 #include "level/csv.h"
 #include "level/tile.h"
-#include "level/tileset.h"
 
-void Level::load(Window* window, std::string path)
+void Level::load(std::string path)
 {
     // Parse tiles file
     std::vector<std::vector<int>> levelData = parseCSVLevel(path);
-
-    // Get textures
-    mTileset.load(window);
 
     // For each line of tiles
     for (int i = 0; i < size(levelData); i++)
@@ -29,12 +25,11 @@ void Level::load(Window* window, std::string path)
             if (tileType > -1)
             {
                 // Add it to the list
-                LTexture* texture = mTileset.get(tileType);
-                line.push_back(Tile(j * TILE_SIZE, i * TILE_SIZE, tileType, texture));
+                line.push_back(Tile(j * TILE_SIZE, i * TILE_SIZE, tileType));
             }
             else
             {
-                line.push_back(Tile(j * TILE_SIZE, i * TILE_SIZE, tileType, NULL));
+                line.push_back(Tile(j * TILE_SIZE, i * TILE_SIZE, tileType));
             }
         }
         tiles.push_back(line);

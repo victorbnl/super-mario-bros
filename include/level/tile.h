@@ -1,7 +1,6 @@
 #ifndef LEVEL_TILE_H
 #define LEVEL_TILE_H
 
-#include "render/ltexture.h"
 #include "physics/bodies.h"
 
 class Tile
@@ -9,11 +8,10 @@ class Tile
     public:
 
         // Constructor
-        Tile(int x, int y, int type_, LTexture* texture_);
+        Tile(int x, int y, int sprite_);
 
         // Texture
-        int type;
-        LTexture* texture;
+        int sprite;
 
         // Physics
         RigidBody body;

@@ -6,7 +6,6 @@
 #include <SDL2/SDL_image.h>
 
 #include "constants.h"
-#include "render/ltexture.h"
 
 Window::Window()
 {
@@ -37,16 +36,13 @@ Window::Window()
     // Check renderer creation error
     if (mRenderer == NULL)
         std::cout << "Failed to create renderer" << std::endl;
+
+    // Load sprites
+    mSpriteSheet.load(mRenderer);
 }
 
 Window::~Window()
 {
-    // Free all textures
-    for (LTexture* texture : mTextures)
-    {
-        texture->free();
-    }
-
     // Destroy SDL entities
     SDL_DestroyRenderer(mRenderer);
     SDL_DestroyWindow(mWindow);
@@ -56,21 +52,14 @@ Window::~Window()
     SDL_Quit();
 }
 
-LTexture* Window::loadTexture(std::string path)
+void Window::drawSprite(Coordinates pos, int sprite)
 {
-    // Load texture on the heap
-    LTexture* texture = new LTexture();
-    texture->loadFromFile(mRenderer, path);
-    mTextures.push_back(texture);
+    Sprite* actualSprite = mSpriteSheet.get(sprite);
 
-    return texture;
-}
-
-void Window::drawTexture(Coordinates pos, LTexture* texture)
-{
     SDL_Rect dstRect;
-    dstRect = {pos.x, pos.y, texture->w, texture->h};
-    SDL_RenderCopy(mRenderer, texture->sTexture, NULL, &dstRect);
+    dstRect = {pos.x, pos.y, actualSprite->w, actualSprite->h};
+
+    SDL_RenderCopy(mRenderer, actualSprite->texture, NULL, &dstRect);
 }
 
 void Window::clear()
@@ -81,4 +70,46 @@ void Window::clear()
 void Window::update()
 {
     SDL_RenderPresent(mRenderer);
+}
+
+void Window::renderWorld(World* world, int cameraX)
+{
+    // Clear screen
+    clear();
+
+    // Draw background
+    drawSprite({0, 0}, world->backgroundSprite);
+
+    // Draw level tiles
+    for (int i = 0; i < size(world->level.tiles); i++)
+    {
+        for (int j = 0; j < size(world->level.tiles[i]); j++)
+        {
+            if (world->level.tiles[i][j].sprite > -1)
+            {
+                int x = j * TILE_SIZE;
+                int y = i * TILE_SIZE;
+
+                drawSprite(
+                    {
+                        x - cameraX,
+                        y
+                    },
+                    world->level.tiles[i][j].sprite
+                );
+            }
+        }
+    }
+
+    // Render character
+    drawSprite(
+        {
+            (int)world->character.body.x - cameraX,
+            (int)world->character.body.y
+        },
+        world->character.sprite
+    );
+
+    // Update renderer
+    update();
 }

@@ -1,18 +1,15 @@
 #ifndef ENTITIES_ENTITY_H
 #define ENTITIES_ENTITY_H
 
-#include "render/ltexture.h"
+#include "spritesheet/sprite.h"
 #include "physics/bodies.h"
 
 class Entity
 {
     public:
 
-        // Initialise
-        void init(LTexture* texture_);
-
         // Texture
-        LTexture* texture;
+        int sprite;
 
         // Physics
         RigidBody body;

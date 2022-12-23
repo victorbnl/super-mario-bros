@@ -7,7 +7,8 @@
 #include <SDL2/SDL.h>
 
 #include "geometry.h"
-#include "render/ltexture.h"
+#include "world.h"
+#include "spritesheet/spritesheet.h"
 
 class Window
 {
@@ -19,17 +20,17 @@ class Window
         // Free everything
         ~Window();
 
-        // Load texture from file, return a pointer to the loaded texture
-        LTexture* loadTexture(std::string path);
-
         // Render texture
-        void drawTexture(Coordinates pos, LTexture* texture);
+        void drawSprite(Coordinates pos, int sprite);
 
         // Clear window
         void clear();
 
         // Update renderer
         void update();
+
+        // Render world
+        void renderWorld(World* world, int cameraX);
 
     private:
 
@@ -40,7 +41,7 @@ class Window
         SDL_Renderer* mRenderer;
 
         // Loaded textures
-        std::vector<LTexture*> mTextures;
+        SpriteSheet mSpriteSheet;
 };
 
 #endif
