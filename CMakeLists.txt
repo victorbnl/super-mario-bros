@@ -28,5 +28,5 @@ file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 # Build level
 file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets/levels)
 execute_process(
-    COMMAND tiled ${CMAKE_CURRENT_SOURCE_DIR}/levels/level.tmx --export-map ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets/levels/level.csv
+    COMMAND tiled-export ${CMAKE_CURRENT_SOURCE_DIR}/levels/level.tmx ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets/levels/level.csv
 )

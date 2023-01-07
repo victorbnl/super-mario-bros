@@ -18,6 +18,7 @@ jobs:
           sudo apt-get -y update
           sudo apt-get -y install python3-pip ninja-build
           sudo pip install cmake
+          sudo pip install git+https://github.com/victorbnl/tiled-export
 
       - name: Install dependencies
         shell: bash
