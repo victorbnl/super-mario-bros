@@ -2,7 +2,6 @@
 #define ENTITIES_CHARACTER_H
 
 #include "entities/entity.h"
-#include "spritesheet/sprite.h"
 
 class Character : public Entity
 {

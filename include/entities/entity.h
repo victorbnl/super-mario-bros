@@ -1,7 +1,6 @@
 #ifndef ENTITIES_ENTITY_H
 #define ENTITIES_ENTITY_H
 
-#include "spritesheet/sprite.h"
 #include "physics/bodies.h"
 
 class Entity

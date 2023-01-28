@@ -1,8 +1,6 @@
 #include "world.h"
 
 #include "constants.h"
-#include "geometry.h"
-#include "render/window.h"
 
 World::World()
 {
